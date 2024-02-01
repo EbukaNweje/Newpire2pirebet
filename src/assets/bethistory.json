@@ -1,0 +1,29 @@
+[
+    {
+        "total_potential_winnings": 3000,
+        "total_stake": 100,
+        "ticket_id": 123456,
+        "status": false,
+        "mode": "single",
+        "games": [
+            {
+                "home": "Chelsea",
+                "away": "Man Utd",
+                "status": true,
+                "outcome": 20,
+                "pick": "-1x3",
+                "date": "10-02-2023",
+                "time": "20:00"
+            },
+            {
+                "home": "Chelsea",
+                "away": "Man Utd",
+                "status": true,
+                "outcome": 20,
+                "pick": "-1x3",
+                "date": "10-02-2023",
+                "time": "20:00"
+            }
+        ]
+    }
+]

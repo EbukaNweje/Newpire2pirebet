@@ -1,0 +1,13 @@
+[
+    {
+        "userData": {
+            "first_name": "test",
+            "last_name": "testlast",
+            "email": "test@email.com",
+            "date_of_birth": "01-10-2023",
+            "fan_club": "Chelsea",
+            "wallet": "yourBtc"
+        }
+    }
+]
+

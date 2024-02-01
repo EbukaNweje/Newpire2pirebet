@@ -1,0 +1,70 @@
+[
+    {
+        "transactions": {
+            "deposit": [
+                {
+                    "date": "2019-08-31",
+                    "amount": 200,
+                    "type": "BTC",
+                    "info": "completed",
+                    "description": null,
+                    "label": "Deposit",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "paymentId": "e8b1d21a-da78-4",
+                    "status": true
+                },
+                {
+                    "date": "2019-08-31",
+                    "amount": 200,
+                    "type": "BTC",
+                    "info": "failed",
+                    "description": null,
+                    "label": "Deposit",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "paymentId": "e8b1d21a-da78-4",
+                    "status": true
+                },
+                {
+                    "date": "2019-08-31",
+                    "amount": 200,
+                    "type": "BTC",
+                    "info": "pending",
+                    "description": null,
+                    "label": "Deposit",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "paymentId": "e8b1d21a-da78-4",
+                    "status": true
+                }
+            ],
+            "withdrawal": [
+                {
+                    "date": "2019-08-31",
+                    "amount": 400,
+                    "status": true,
+                    "info": "pending",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "type": "BTC",
+                    "id": "bc1qcr8te4kr609gcaqlc"
+                },
+                {
+                    "date": "2019-08-31",
+                    "amount": 400,
+                    "status": true,
+                    "info": "pending",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "type": "BTC",
+                    "id": "bc1qcr8te4kr609gcaqlc"
+                },
+                {
+                    "date": "2019-08-31",
+                    "amount": 400,
+                    "status": true,
+                    "info": "pending",
+                    "address": "bc1qcr8te4kr609gcaqlc",
+                    "type": "BTC",
+                    "id": "bc1qcr8te4kr609gcaqlc"
+                }
+            ]
+        }
+    }
+]
