@@ -1,5 +1,11 @@
 const MainHome = () => {
-    return <div className="w-full h-max"></div>;
+    return (
+      <>
+        <div className="w-full h-max text-white">
+          
+        </div>
+      </>
+    )
 };
 
 export default MainHome;
