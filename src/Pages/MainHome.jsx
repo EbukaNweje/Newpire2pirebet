@@ -1,11 +1,11 @@
-const MainHome = () => {
-    return (
-      <>
-        <div className="w-full h-max text-white">
-          
-        </div>
-      </>
-    )
-};
 
-export default MainHome;
+
+const MainHome = () => {
+  return (
+    <div className="w-full h-screen bg-sky-300">
+      
+    </div>
+  )
+}
+
+export default MainHome
