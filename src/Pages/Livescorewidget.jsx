@@ -6,7 +6,7 @@ const LivescoreWidget = () => {
     const script = document.createElement('script');
 
     // Set the script source to the Livescore widget URL
-    script.src = 'https://ls.soccersapi.com/widget/res/w_default/widget.js';
+    script.src = "https://ls.soccersapi.com/widget/res/wo_w4065_65bcf9fdc53b7/widget.js";
     
     // Set any other attributes if needed
     script.type = 'text/javascript';
@@ -21,7 +21,7 @@ const LivescoreWidget = () => {
   }, []); // Empty dependency array ensures this runs only once on mount
 
   return (
-    <div id="ls-widget" data-w="w_default" className="livescore-widget"></div>
+    <div id="ls-widget" data-w="w_default" className="livescore-widget min-h-screen max-h-max"></div>
   );
 };
 

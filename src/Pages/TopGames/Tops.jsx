@@ -10,7 +10,7 @@ const Tops = () => {
     return (
         <>
             <div className="w-full h-max text-white">
-                <div className="w-full h-max flex flex-col text-white justify-center gap-2">
+                <div className="w-full h-max flex flex-col text-white justify-center gap-2 px-2">
                     <div className="w-full h-10 flex items-center text-sm">
                         Top Leagues
                     </div>
@@ -68,7 +68,7 @@ const Tops = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full h-52 bg-sky-950 overflow-x-auto scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-800 scrollbar-track-gray-300 scrollbar scrollbar-h-[0.1rem]">
+                    <div className="w-full h-52 bg-sky-950 overflow-x-auto scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-800 scrollbar-track-gray-300 scrollbar-none scrollbar-h-0">
                         <div className="w-max h-full flex gap-4 p-4">
                             {topStatus === 0 ? (
                                 <Prem />

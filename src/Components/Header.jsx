@@ -3,6 +3,7 @@ import logo from "../assets/PierLogo.svg";
 import {Drawer} from "antd";
 import {useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -67,22 +68,25 @@ const Header = () => {
                                 <div
                                     className={` ${
                                         europe
-                                            ? "max-h-56 overflow-hidden transition-max-h duration-700 ease-in-out"
+                                            ? "max-h-44 overflow-hidden transition-max-h duration-700 ease-in-out"
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Uefa Champions League
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Uefa Europa League
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Uefa Conference Leage
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        Uefa Super Cup
-                                    </div>
+                                    <NavLink to={"/uefa-champions-league"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Uefa Champions League
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"uefa-europa-league"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Uefa Europa League
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"uefa-super-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            Uefa Super Cup
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="w-full h-max rounded flex flex-col gap-2 ">
@@ -106,18 +110,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Premier League
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        FA Cup
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        EFL Cup
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        Community Shield
-                                    </div>
+                                    <NavLink to={"premier-league"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Premier League
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"fa-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            FA Cup
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"efl-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            EFL Cup
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"community-shield"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            Community Shield
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="w-full h-max rounded flex flex-col gap-2 ">
@@ -139,15 +151,21 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Laliga
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Copa del ray
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        Spanish Super Cup
-                                    </div>
+                                    <NavLink to={"laliga"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Laliga
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"copa-del-rey"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Copa del ray
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"spanish-super-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            Spanish Super Cup
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="w-full h-max rounded flex flex-col gap-2 ">
@@ -171,16 +189,21 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Bundesliga
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        DFB Pokal
-                                    </div>
-
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        German Super Cup
-                                    </div>
+                                    <NavLink to={"bundesliga"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Bundesliga
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"dfb-pokal"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            DFB Pokal
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"german-super-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            German Super Cup
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="w-full h-max rounded flex flex-col gap-2 ">
@@ -202,16 +225,21 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Seria A
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Copa Italia
-                                    </div>
-
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        Italia Super Cup
-                                    </div>
+                                    <NavLink to={"seria-a"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Seria A
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"copa-italia"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Copa Italia
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"italia-super-cup"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            Italia Super Cup
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                             <div className="w-full h-max rounded flex flex-col gap-2 ">
@@ -235,15 +263,21 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Ligue 1
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
-                                        Coupe De France
-                                    </div>
-                                    <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
-                                        Trophee des champions
-                                    </div>
+                                    <NavLink to={"ligue-one"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Ligue 1
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"coupe-de-france"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
+                                            Coupe De France
+                                        </div>
+                                    </NavLink>
+                                    <NavLink to={"trophee-des-champions"}>
+                                        <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
+                                            Trophee des champions
+                                        </div>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>
@@ -252,7 +286,6 @@ const Header = () => {
                         <div className="w-full h-10 flex items-center bg-gray-700 rounded">
                             My Fan Page
                         </div>
-                        
                     </div>
                 </div>
             </Drawer>

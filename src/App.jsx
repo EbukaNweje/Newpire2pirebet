@@ -24,6 +24,9 @@ import Coupe from "./Pages/Leagues/Coupe";
 import SeriaA from "./Pages/Leagues/SeriaA";
 import CopaItalia from "./Pages/Leagues/CopaItalia";
 import ItaliaSuperCup from "./Pages/Leagues/ItaliaSuperCup";
+import Ucl from "./Pages/Leagues/Ucl";
+import Uel from "./Pages/Leagues/Uel";
+import UefaSuperCup from "./Pages/Leagues/UefaSuperCup";
 
 const router = createBrowserRouter([
     //Entry Route
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <MainHome />,
+            },
+            {
+                path: "uefa-champions-league",
+                element: <Ucl />,
+            },
+            {
+                path: "uefa-europa-league",
+                element: <Uel />,
+            },
+            {
+                path: "uefa-super-cup",
+                element: <UefaSuperCup />,
             },
             {
                 path: "premier-league",
@@ -99,13 +114,18 @@ const router = createBrowserRouter([
                 path: "italia-super-cup",
                 element: <ItaliaSuperCup />,
             },
+            {
+                path: "live-score",
+                element: <LivescoreWidget />,
+                
+            },
         ],
     },
     {path: "/login", element: <Login />},
     {path: "/signup", element: <SignUp />},
     {path: "/verify", element: <Verify />},
     {path: "/testapi", element: <TestApi />},
-    {path: "/livescore", element: <LivescoreWidget />},
+    // {path: "/livescore", element: <LivescoreWidget />},
 ]);
 
 const App = () => {

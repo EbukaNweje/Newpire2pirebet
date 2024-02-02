@@ -4,7 +4,7 @@ import {TbRating18Plus} from "react-icons/tb";
 const Footer = () => {
     return (
         <>
-            <div className="w-full h-[20vh] bg-lime-950 flex justify-between px-10">
+            <div className="w-full h-[20vh] bg-lime-950 flex justify-between px-10 mt-10">
                 <div className="w-1/3 h-full flex flex-col justify-center gap-4 ">
                     <img src={logo} alt="" className="w-16 h-16" />
                     <p className="text-sm text-white">
@@ -12,12 +12,12 @@ const Footer = () => {
                     </p>
                 </div>
                 <div className="w-1/3 h-full flex flex-col gap-4">
-                    <ul className="w-full h-full flex flex-col justify-center gap-2 text-white text-sm">
+                    <ul className="w-full h-full flex flex-col justify-center gap-2 text-white text-sm font-light">
                         <li className="w-max cursor-pointer">Home</li>
                         <li className="w-max cursor-pointer">Deposit</li>
                         <li className="w-max cursor-pointer">Withdrawal</li>
                         <li className="w-max cursor-pointer">
-                            Terms and conditions
+                            TCS
                         </li>
                     </ul>
                 </div>

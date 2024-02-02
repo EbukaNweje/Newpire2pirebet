@@ -6,6 +6,8 @@ import {useEffect, useState} from "react";
 import {FaAngleLeft, FaAngleRight} from "react-icons/fa";
 
 const Carousel = () => {
+    const hideCarousel = window.location.pathname.includes("/live-score");
+
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const imageArray = [Cr1, Cr2, Cr3, Cr4];
     const totalImages = imageArray.length;
@@ -29,7 +31,7 @@ const Carousel = () => {
     }, [currentImageIndex]);
     return (
         <>
-            <div className="w-full h-[40vh]">
+            <div className={`w-full h-[30vh] ${hideCarousel? "hidden" : ""}`}>
                 <div className="w-full h-full relative">
                     <span
                         className="absolute left-2 bg-[#807c7c] w-8 h-8 rounded-full flex items-center justify-center text-white top-[50%] cursor-pointer"
