@@ -17,7 +17,7 @@ const Home = () => {
                 <Header />
                 <SubHeader />
                 <Carousel />
-                <div className="w-full h-max text-white">
+                <div className="w-full h-max min-h-[32vh] text-white">
                     <Outlet />
                 </div>
                 <Footer />
