@@ -27,6 +27,7 @@ import ItaliaSuperCup from "./Pages/Leagues/ItaliaSuperCup";
 import Ucl from "./Pages/Leagues/Ucl";
 import Uel from "./Pages/Leagues/Uel";
 import UefaSuperCup from "./Pages/Leagues/UefaSuperCup";
+import MyAccount from "./Pages/MyAccount";
 
 const router = createBrowserRouter([
     //Entry Route
@@ -124,7 +125,8 @@ const router = createBrowserRouter([
     {path: "/login", element: <Login />},
     {path: "/signup", element: <SignUp />},
     {path: "/verify", element: <Verify />},
-    {path: "/testapi", element: <TestApi />},
+    {path: "/verify", element: <Verify />},
+    {path: "/my-account", element: <MyAccount />},
     // {path: "/livescore", element: <LivescoreWidget />},
 ]);
 

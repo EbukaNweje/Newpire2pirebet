@@ -4,6 +4,7 @@ import {Drawer} from "antd";
 import {useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
+import {CiUser} from "react-icons/ci";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -13,6 +14,9 @@ const Header = () => {
     const [germany, setGermany] = useState(false);
     const [france, setFrance] = useState(false);
     const [italy, setItaly] = useState(false);
+
+    const user = false;
+    const [drop, setDrop] = useState(false);
 
     return (
         <>
@@ -27,12 +31,51 @@ const Header = () => {
                     <img src={logo} alt="" className="w-10" />
                 </div>
                 <div className="w-[30%] phone:w-max h-max flex items-center justify-end gap-4">
-                    <button className="w-max h-max flex items-center px-3 py-2 bg-[#119702] text-white text-xs font-medium rounded">
-                        Sign Up
-                    </button>
-                    <button className="w-max h-max flex items-center px-4 py-2 border rounded text-white border-[#119702] text-xs font-medium">
-                        Login
-                    </button>
+                    {!user ? (
+                        <div className="w-20 h-max flex justify-end relative">
+                            <CiUser
+                                className="w-8 h-8 border-2 text-white border-gray-50 rounded-full flex items-center justify-center cursor-pointer p-1"
+                                onClick={() => setDrop(!drop)}
+                            />
+                            {drop && (
+                                <div className="absolute top-10 z-20 right-0 bg-slate-800 w-56 rounded p-2 h-max flex flex-col gap-2 text-white">
+                                    <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
+                                        <p>Mark Spencer</p>
+                                        <p className="w-full flex gap-2">
+                                            User ID <span>#2000000</span>
+                                        </p>
+                                    </div>
+                                    <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
+                                        <p>Account Balance</p>
+                                        <p className="w-full flex justify-between">
+                                            $200 <span>0.30000 BTC</span>
+                                        </p>
+                                    </div>
+                                    <NavLink to={"/my-account"}>
+                                        <div className="w-full h-12 flex flex-col justify-center gap-2 text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
+                                            <p>My Account</p>
+                                        </div>
+                                    </NavLink>
+                                    <div className="w-full h-12 flex flex-col justify-center gap-2 text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
+                                        <p>My Betslips</p>
+                                    </div>
+                                    <div className="w-full h-12 flex flex-col gap-2 justify-center text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
+                                        <p>Logout</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            {" "}
+                            <button className="w-max h-max flex items-center px-3 py-2 bg-[#119702] text-white text-xs font-medium rounded">
+                                Sign Up
+                            </button>
+                            <button className="w-max h-max flex items-center px-4 py-2 border rounded text-white border-[#119702] text-xs font-medium">
+                                Login
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
             <Drawer
