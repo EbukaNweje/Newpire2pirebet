@@ -5,6 +5,7 @@ import {useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 import {CiUser} from "react-icons/ci";
+import {useNavigate} from "react-router-dom";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -14,9 +15,15 @@ const Header = () => {
     const [germany, setGermany] = useState(false);
     const [france, setFrance] = useState(false);
     const [italy, setItaly] = useState(false);
-
-    const user = false;
     const [drop, setDrop] = useState(false);
+    const [myAccount, setMyAccount] = useState(false);
+    const nav = useNavigate();
+    // const [Profile, setProfile] = useState(false);
+    // const [BetSlips, setbetSlips] = useState(false);
+    // const [Withdrawal, setWithdrawal] = useState(false);
+    // const [Deposit, setDeposit] = useState(false);
+    // const [Transactions, setTransactions] = useState(false);
+    const user = false;
 
     return (
         <>
@@ -28,7 +35,12 @@ const Header = () => {
                     />
                 </div>
                 <div className="w-[30%] h-max flex items-center justify-center">
-                    <img src={logo} alt="" className="w-10" />
+                    <img
+                        src={logo}
+                        alt=""
+                        className="w-10 cursor-pointer"
+                        onClick={() => nav("/")}
+                    />
                 </div>
                 <div className="w-[30%] phone:w-max h-max flex items-center justify-end gap-4">
                     {!user ? (
@@ -51,11 +63,66 @@ const Header = () => {
                                             $200 <span>0.30000 BTC</span>
                                         </p>
                                     </div>
-                                    <NavLink to={"/my-account"}>
-                                        <div className="w-full h-12 flex flex-col justify-center gap-2 text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
+                                    {/* <NavLink to={"/my-account"}> */}
+                                    <div className="w-full h-max flex flex-col justify-center text-sm bg-slate-800 rounded-lg cursor-pointer ">
+                                        <div
+                                            className="w-full h-12 flex items-center px-1 justify-between bg-slate-700 rounded-lg"
+                                            onClick={() =>
+                                                setMyAccount(!myAccount)
+                                            }
+                                        >
                                             <p>My Account</p>
+                                            <FaCaretDown
+                                                className={`w-5 h-5 transition-all duration-700 ${
+                                                    myAccount
+                                                        ? "transform -rotate-180"
+                                                        : ""
+                                                }`}
+                                            />
                                         </div>
-                                    </NavLink>
+                                        <div
+                                            className={`w-full ${
+                                                myAccount
+                                                    ? "max-h-64 overflow-hidden transition-max-h duration-700 ease-in-out"
+                                                    : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
+                                            } flex flex-col gap-2 px-2 text-xs`}
+                                        >
+                                            <NavLink to={"/my-account/profile"}>
+                                                <div className="w-full h-9 flex items-center pl-2 bg-slate-700 rounded  mt-2">
+                                                    <p>My Profile</p>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to={"/my-account/betslips"}
+                                            >
+                                                <div className="w-full h-9 flex items-center pl-2 bg-slate-700 rounded">
+                                                    <p>My Betslips</p>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to={"/my-account/transactions"}
+                                            >
+                                                <div className="w-full h-9 flex items-center pl-2 bg-slate-700 rounded">
+                                                    <p>My Transactions</p>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to={"/my-account/withdrawals"}
+                                            >
+                                                <div className="w-full h-9 flex items-center pl-2 bg-slate-700 rounded">
+                                                    <p>Withdrawal</p>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink
+                                                to={"/my-account/deposits"}
+                                            >
+                                                <div className="w-full h-9 flex items-center pl-2 bg-slate-700 rounded">
+                                                    <p>Deposit</p>
+                                                </div>
+                                            </NavLink>
+                                        </div>
+                                    </div>
+                                    {/* </NavLink> */}
                                     <div className="w-full h-12 flex flex-col justify-center gap-2 text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
                                         <p>My Betslips</p>
                                     </div>

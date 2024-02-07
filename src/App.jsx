@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Verify from "./Pages/Verify";
-import TestApi from "./Pages/TestApi";
+// import TestApi from "./Pages/TestApi";
 import LivescoreWidget from "./Pages/Livescorewidget";
 import MainHome from "./Pages/MainHome";
 import PremierLeague from "./Pages/Leagues/PremierLeague";
@@ -27,7 +27,13 @@ import ItaliaSuperCup from "./Pages/Leagues/ItaliaSuperCup";
 import Ucl from "./Pages/Leagues/Ucl";
 import Uel from "./Pages/Leagues/Uel";
 import UefaSuperCup from "./Pages/Leagues/UefaSuperCup";
-import MyAccount from "./Pages/MyAccount";
+import MyAccount from "./Pages/MyAccount/MyAccount";
+import MyProfile from "./Pages/MyAccount/MyProfile";
+import MyBetslips from "./Pages/MyAccount/MyBetslips";
+import MyWithdrawals from "./Pages/MyAccount/MyWithdrawals";
+import MyDeposits from "./Pages/MyAccount/MyDeposits";
+import MyTransactions from "./Pages/MyAccount/MyTransactions";
+// import Faq from "./Pages/Faq";
 
 const router = createBrowserRouter([
     //Entry Route
@@ -118,7 +124,6 @@ const router = createBrowserRouter([
             {
                 path: "live-score",
                 element: <LivescoreWidget />,
-                
             },
         ],
     },
@@ -126,8 +131,33 @@ const router = createBrowserRouter([
     {path: "/signup", element: <SignUp />},
     {path: "/verify", element: <Verify />},
     {path: "/verify", element: <Verify />},
-    {path: "/my-account", element: <MyAccount />},
-    // {path: "/livescore", element: <LivescoreWidget />},
+    {
+        path: "/my-account",
+        element: <MyAccount />,
+        children: [
+            {
+                path: "profile",
+                element: <MyProfile />,
+            },
+            {
+                path: "betslips",
+                element: <MyBetslips />,
+            },
+            {
+                path: "withdrawals",
+                element: <MyWithdrawals />,
+            },
+            {
+                path: "deposits",
+                element: <MyDeposits />,
+            },
+            {
+                path: "transactions",
+                element: <MyTransactions />,
+            },
+        ],
+    },
+    // {path: "/faq", element: <Faq />},
 ]);
 
 const App = () => {
