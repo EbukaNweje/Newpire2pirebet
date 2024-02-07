@@ -89,7 +89,7 @@ const MyDeposits = () => {
                 }}
                 closeIcon={true}
             >
-                <div className="w-full h-80 flex flex-col gap-2 py-6">
+                <div className="w-full h-max flex flex-col gap-2 py-6">
                     <div className="w-full h-max flex flex-col gap-3">
                         <div className="w-full h-24 border border-[rgb(205,159,12)] bg-[#fef7e2] rounded flex flex-col items-center justify-center gap-1">
                             <p className="text-sm text-[rgb(205,159,12)]">

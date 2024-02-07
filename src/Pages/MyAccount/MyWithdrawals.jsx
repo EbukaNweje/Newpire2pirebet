@@ -1,4 +1,17 @@
+import {useState} from "react";
+import toast from "react-hot-toast";
+import {Modal} from "antd";
+
 const MyWithdrawals = () => {
+    const [isReady, setIsReady] = useState(false);
+    const handleWithdraw = () => {
+        const loadingId = toast.loading("Please wait...");
+        setTimeout(() => {
+            toast.dismiss(loadingId);
+            toast.success("Withdrawal placed successful, pending confirmation");
+            setIsReady(false);
+        }, 5000);
+    };
     return (
         <>
             <div className="w-full h-max">
@@ -27,17 +40,44 @@ const MyWithdrawals = () => {
                             <input
                                 type="text"
                                 readOnly
-                                value={"bc1q40xd9vyzz2n7y9wsrjxcqgk8jc8wj5x5sthptl"}
+                                value={
+                                    "bc1q40xd9vyzz2n7y9wsrjxcqgk8jc8wj5x5sthptl"
+                                }
                                 className="text-black w-full h-10 rounded outline-none pl-2"
                             />
                         </div>
 
-                        <button className="w-full h-12 rounded outline-none bg-green-400 text-xl">
+                        <button
+                            className="w-full h-12 rounded outline-none bg-green-400 text-xl"
+                            onClick={() => setIsReady(true)}
+                        >
                             SUBMIT
                         </button>
                     </div>
                 </div>
             </div>
+            <Modal
+                open={isReady}
+                onOk={handleWithdraw}
+                onCancel={() => setIsReady(false)}
+                // cancelButtonProps={{hidden: true}}
+                okButtonProps={{
+                    className: "bg-[#0A503D] text-white",
+                    size: "large",
+                    style: {
+                        backgroundColor: "#0A503D",
+                    },
+                }}
+                closeIcon={true}
+            >
+                <div className="w-full h-max flex flex-col gap-2 py-6">
+                    <p>Please enter your password</p>
+                    <input
+                        type="password"
+                        className="w-full h-10 rounded outline-none border-2 pl-2"
+                    />
+                </div>
+            </Modal>
         </>
     );
 };
