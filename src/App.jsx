@@ -18,7 +18,7 @@ import SpainSuperCup from "./Pages/Leagues/SpainSuperCup";
 import Bundesliga from "./Pages/Leagues/Bundesliga";
 import Dfbpokal from "./Pages/Leagues/Dfbpokal";
 import GermanSuperCup from "./Pages/Leagues/GermanSuperCup";
-import LigueOne from "./Pages/Leagues/ligueOne";
+// import LigueOne from "./Pages/Leagues/ligueOne";
 import Trophee from "./Pages/Leagues/Trophee";
 import Coupe from "./Pages/Leagues/Coupe";
 import SeriaA from "./Pages/Leagues/SeriaA";
@@ -33,7 +33,8 @@ import MyBetslips from "./Pages/MyAccount/MyBetslips";
 import MyWithdrawals from "./Pages/MyAccount/MyWithdrawals";
 import MyDeposits from "./Pages/MyAccount/MyDeposits";
 import MyTransactions from "./Pages/MyAccount/MyTransactions";
-// import Faq from "./Pages/Faq";
+import FrenchLeagueOne from "./Pages/Leagues/FrenchLeagueOne";
+
 
 const router = createBrowserRouter([
     //Entry Route
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "ligue-one",
-                element: <LigueOne />,
+                element: <FrenchLeagueOne />,
             },
             {
                 path: "trophee-des-champions",
