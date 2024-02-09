@@ -1,6 +1,6 @@
 import {IoIosMenu} from "react-icons/io";
 import logo from "../assets/PierLogo.svg";
-import {Drawer} from "antd";
+import {Drawer, Modal} from "antd";
 import {useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
@@ -17,13 +17,10 @@ const Header = () => {
     const [italy, setItaly] = useState(false);
     const [drop, setDrop] = useState(false);
     const [myAccount, setMyAccount] = useState(false);
+    const [openSignUp, setOpenSignUp] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
     const nav = useNavigate();
-    // const [Profile, setProfile] = useState(false);
-    // const [BetSlips, setbetSlips] = useState(false);
-    // const [Withdrawal, setWithdrawal] = useState(false);
-    // const [Deposit, setDeposit] = useState(false);
-    // const [Transactions, setTransactions] = useState(false);
-    const user = false;
+    const user = true;
 
     return (
         <>
@@ -135,10 +132,16 @@ const Header = () => {
                     ) : (
                         <>
                             {" "}
-                            <button className="w-max h-max flex items-center px-3 py-2 bg-[#119702] text-white text-xs font-medium rounded">
+                            <button
+                                className="w-max h-max flex items-center px-3 py-2 bg-[#119702] text-white text-xs font-medium rounded"
+                                onClick={() => setOpenSignUp(true)}
+                            >
                                 Sign Up
                             </button>
-                            <button className="w-max h-max flex items-center px-4 py-2 border rounded text-white border-[#119702] text-xs font-medium">
+                            <button
+                                className="w-max h-max flex items-center px-4 py-2 border rounded text-white border-[#119702] text-xs font-medium"
+                                onClick={() => setOpenLogin(true)}
+                            >
                                 Login
                             </button>
                         </>
@@ -399,6 +402,96 @@ const Header = () => {
                     </div>
                 </div>
             </Drawer>
+            <Modal
+                open={openSignUp}
+                cancelButtonProps={{hidden: true}}
+                okButtonProps={{hidden: true}}
+                closeIcon={true}
+                onCancel={() => setOpenSignUp(false)}
+            >
+                <div className="w-full h-max">
+                    <div className="w-full h-20 flex items-center justify-center text-2xl">
+                        Register
+                    </div>
+                    <div className="w-full h-max flex flex-col gap-4">
+                        <div className="w-full h-max">
+                            <p>Email</p>
+                            <input
+                                type="email"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                            />
+                        </div>
+                        <div>
+                            <p>Password</p>
+                            <input
+                                type="email"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                            />
+                        </div>
+                        <div className="w-full h-max">
+                            <select
+                                name=""
+                                id=""
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                            >
+                                <option value="">---Select Fanpage---</option>
+                                <option value="">Chelsea</option>
+                                <option value="">Man Utd</option>
+                                <option value="">Barcelona</option>
+                                <option value="">Liverpool</option>
+                                <option value="">Real Madrid</option>
+                                <option value="">PSG</option>
+                                <option value="">Arsenal</option>
+                                <option value="">Bayern Munich</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="w-full h-20 flex items-center justify-center">
+                        <button className="px-4 py-2 rounded bg-green-900 text-white">
+                            Register
+                        </button>
+                    </div>
+                    <p className="text-xs">
+                        By creating an account, you agree to our Terms &
+                        Conditions and confirm that you are at least 18 years
+                        old or over and all information given is true.
+                    </p>
+                </div>
+            </Modal>
+            <Modal
+                open={openLogin}
+                cancelButtonProps={{hidden: true}}
+                okButtonProps={{hidden: true}}
+                closeIcon={true}
+                onCancel={() => setOpenLogin(false)}
+            >
+                <div className="w-full h-max">
+                    <div className="w-full h-20 flex items-center justify-center text-2xl">
+                        Login
+                    </div>
+                    <div className="w-full h-max flex flex-col gap-4">
+                        <div className="w-full h-max">
+                            <p>Email</p>
+                            <input
+                                type="email"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                            />
+                        </div>
+                        <div>
+                            <p>Password</p>
+                            <input
+                                type="email"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                            />
+                        </div>
+                    </div>
+                    <div className="w-full h-20 flex items-center justify-center">
+                        <button className="px-4 py-2 rounded bg-green-900 text-white">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </Modal>
         </>
     );
 };
