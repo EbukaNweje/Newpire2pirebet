@@ -15,28 +15,28 @@
                     "away_fanpage": "CHE"
                 },
                 {
-                    "home": "Man Utd",
-                    "away": "Chelsea",
+                    "home": "Liverpool",
+                    "away": "Arsenal",
                     "date": "02-02-2024",
                     "time": "02:00",
                     "home_win": "40%",
                     "away_win": "40%",
                     "draw": "20%",
                     "valid": true,
-                    "home_fanpage": "MUN",
-                    "away_fanpage": "CHE"
+                    "home_fanpage": "LIV",
+                    "away_fanpage": "ARS"
                 },
                 {
-                    "home": "Man Utd",
-                    "away": "Chelsea",
+                    "home": "Man City",
+                    "away": "Everton",
                     "date": "02-02-2024",
                     "time": "02:00",
                     "home_win": "40%",
                     "away_win": "40%",
                     "draw": "20%",
                     "valid": true,
-                    "home_fanpage": "MUN",
-                    "away_fanpage": "CHE"
+                    "home_fanpage": "MCI",
+                    "away_fanpage": "EVE"
                 }
             ],
             "fa_cup": [

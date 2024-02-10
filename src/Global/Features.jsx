@@ -23,17 +23,8 @@ const features = createSlice({
             state.user = {};
             state.userToken = "";
         },
-        betSlip: (state, {payload}) => {
-            const existingOddsIndex = state.slip.findIndex(
-                (item) => item.bettor === payload.bettor
-            );
-            if (existingOddsIndex !== -1) {
-                state.slip[existingOddsIndex].oddsSelected =
-                    payload.oddsSelected;
-            } else {
-                state.slip.push(payload);
-                console.log(payload);
-            }
+        betSlip: (state, { payload }) => {
+            state.slip.push(payload)
         },
         clearSlip: (state) => {
             state.slip = [];
@@ -42,7 +33,7 @@ const features = createSlice({
             const updatedSlip = state.slip.filter(
                 (item) => item.bettor !== payload.bettor
             );
-            state.slip = updatedSlip;
+            state.slip = updatedSlip;   
         },
     },
 });

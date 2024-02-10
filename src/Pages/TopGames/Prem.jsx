@@ -1,16 +1,75 @@
-import {useState} from "react";
-import data from "../../assets/Games.json";
-// import {useDispatch} from 'react-redux'
-// import { betSlip } from "../../Global/Features";
+import {useEffect, useState} from "react";
+import games from "../../assets/Games.json";
+import data from "../../assets/data.json";
+import {useDispatch} from "react-redux";
+import {betSlip} from "../../Global/Features";
 import {Modal} from "antd";
 import {BsInfoCircle} from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const Prem = () => {
     // console.log(data[0].england.premier_league);
-    // const dispatch = useDispatch()
-    const prem = data[0].england.premier_league;
+    const dispatch = useDispatch();
+    const prem = games[0].england.premier_league;
     // console.log(prem);
     const [openFanPage, setOpenFanPage] = useState(false);
+
+    const [selectedOddsIndices, setSelectedOddsIndices] = useState(() =>
+        data.map(() => Math.floor(Math.random() * data[0]?.oddsData.length))
+    );
+    const [selectedGame, setSelectedGame] = useState({});
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setSelectedOddsIndices((prevIndices) =>
+                prevIndices.map(() =>
+                    Math.floor(Math.random() * data[0]?.oddsData.length)
+                )
+            );
+        }, 3600000);
+
+        return () => clearInterval(intervalId);
+    }, [data]);
+
+    const [selectedTooltipIndex, setSelectedTooltipIndex] = useState(null);
+    const [toolTipStates, setToolTipStates] = useState(
+        Array(data.map(() => false))
+    );
+
+    const handleToolTip = (index) => {
+        setSelectedTooltipIndex(index);
+        setToolTipStates((prevStates) => prevStates.map((_, i) => i === index));
+        toast.success(
+            `${
+                data[selectedTooltipIndex]?.oddsData[
+                    selectedOddsIndices[selectedTooltipIndex]
+                ]?.pickInfo
+            } ${
+                data[selectedTooltipIndex]?.oddsData[
+                    selectedOddsIndices[selectedTooltipIndex]
+                ]?.oddsPick
+            }`
+        );
+    };
+
+    const addBet = (userName, oddsPick) => {
+        dispatch(
+            betSlip({
+                userName,
+                oddsPick,
+
+                selectedGame, // Include selectedGame in the dispatched data
+            })
+        );
+    };
+
+    const handleGameClick = (item, option) => {
+        setSelectedGame({
+            ...item,
+            selectedOption: option,
+        });
+        setOpenFanPage(true);
+    };
 
     return (
         <>
@@ -33,7 +92,7 @@ const Prem = () => {
                     <div className="w-full h-max flex justify-between">
                         <div
                             className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1"
-                            onClick={() => setOpenFanPage(true)}
+                            onClick={() => handleGameClick(item, "home")}
                         >
                             <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
                                 1 <span>{item.home_win}</span>
@@ -46,7 +105,7 @@ const Prem = () => {
                         </div>
                         <div
                             className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1"
-                            onClick={() => setOpenFanPage(true)}
+                            onClick={() => handleGameClick(item, "away")}
                         >
                             <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
                                 2 <span>{item.away_win}</span>
@@ -74,46 +133,42 @@ const Prem = () => {
                     </div>
                     <div className="w-full h-[50vh] flex flex-col gap-3 overflow-y-auto">
                         <div className="w-full h-max flex flex-col gap-3">
-                            <div className="w-full h-10 flex gap-2 items-center justify-between ">
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    John
+                            {data.map((item, index) => (
+                                <div
+                                    className="w-full h-10 flex gap-2 items-center justify-between "
+                                    key={index}
+                                >
+                                    <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
+                                        {item.userName}
+                                    </div>
+                                    <div
+                                        className="w-1/2 h-full flex items-center justify-center bg-slate-600 cursor-pointer"
+                                        onClick={() =>
+                                            addBet(
+                                                item.userName,
+                                                item.oddsData[
+                                                    selectedOddsIndices[index]
+                                                ].oddsPick
+                                            )
+                                        }
+                                    >
+                                        <p className="w-max flex items-center gap-6">
+                                            {
+                                                item.oddsData[
+                                                    selectedOddsIndices[index]
+                                                ].oddsPick
+                                            }
+                                            <span
+                                                onClick={() =>
+                                                    handleToolTip(index)
+                                                }
+                                            >
+                                                <BsInfoCircle className="h-5 w-5" />
+                                            </span>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    <p className="w-max flex items-center gap-4">
-                                        -1x3{" "}
-                                        <span>
-                                            <BsInfoCircle className="w-5 h-5" />
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="w-full h-10 flex gap-2 items-center justify-between ">
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    John
-                                </div>
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    <p className="w-max flex items-center gap-4">
-                                        -1x3{" "}
-                                        <span>
-                                            <BsInfoCircle className="w-5 h-5" />
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="w-full h-10 flex gap-2 items-center justify-between ">
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    John
-                                </div>
-                                <div className="w-1/2 h-full flex items-center justify-center bg-slate-600">
-                                    <p className="w-max flex items-center gap-4">
-                                        -1x3{" "}
-                                        <span>
-                                            <BsInfoCircle className="w-5 h-5" />
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

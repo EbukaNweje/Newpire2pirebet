@@ -19,7 +19,6 @@ const persistConfig = {
 };
 const rootReducers = combineReducers({
     newPier2Pier: features,
-    // Add other reducers here if needed
 });
 const persistedReducer = persistReducer(persistConfig, rootReducers);
 

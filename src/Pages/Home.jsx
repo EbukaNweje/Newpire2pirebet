@@ -8,11 +8,16 @@ import {Drawer} from "antd";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {IoIosRemoveCircle} from "react-icons/io";
 import {useSelector} from "react-redux";
+import {clearSlip} from "../Global/Features";
+import {useDispatch} from "react-redux";
 
 const Home = () => {
     const [openSlip, setOpenSlip] = useState(false);
-    const betslip = useSelector((state) => state.newPier2Pier.newPier2Pier.user);
+    const betslip = useSelector(
+        (state) => state.newPier2Pier.newPier2Pier.slip
+    );
     console.log(betslip);
+    const dispatch = useDispatch();
     return (
         <>
             <div
@@ -49,7 +54,10 @@ const Home = () => {
                             2 Selected
                         </p>
 
-                        <div className="w-max h-max flex cursor-pointer">
+                        <div
+                            className="w-max h-max flex cursor-pointer"
+                            onClick={() => dispatch(clearSlip())}
+                        >
                             <RiDeleteBin6Line className="w-6 h-6 text-red-500 cursor-pointer" />
                         </div>
                     </div>

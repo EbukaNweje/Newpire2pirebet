@@ -1,13 +1,6 @@
 [
     {
         "userName": "NewMan",
-        "userPick": {
-            "pickType": "soccer",
-            "team1": "Bayern Munich",
-            "team2": "Manchester United"
-        },
-        "userId": "pier100",
-        "odds5": ["-0/x1", "-1/x1", "-2x1", "-3x1", "-4x1", "-0x2"],
         "oddsData": [
             {
                 "oddsPick": "-0/x1",
