@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
     user: {},
     userToken: "",
+    slip: [],
 };
 
 const features = createSlice({
@@ -22,9 +23,31 @@ const features = createSlice({
             state.user = {};
             state.userToken = "";
         },
+        betSlip: (state, {payload}) => {
+            const existingOddsIndex = state.slip.findIndex(
+                (item) => item.bettor === payload.bettor
+            );
+            if (existingOddsIndex !== -1) {
+                state.slip[existingOddsIndex].oddsSelected =
+                    payload.oddsSelected;
+            } else {
+                state.slip.push(payload);
+                console.log(payload);
+            }
+        },
+        clearSlip: (state) => {
+            state.slip = [];
+        },
+        removeSingle: (state, {payload}) => {
+            const updatedSlip = state.slip.filter(
+                (item) => item.bettor !== payload.bettor
+            );
+            state.slip = updatedSlip;
+        },
     },
 });
 
-export const {user, logout, token} = features.actions;
+export const {user, logout, token, betSlip, clearSlip, removeSingle} =
+    features.actions;
 
 export default features.reducer;

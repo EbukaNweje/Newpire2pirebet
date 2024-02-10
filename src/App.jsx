@@ -34,6 +34,7 @@ import MyWithdrawals from "./Pages/MyAccount/MyWithdrawals";
 import MyDeposits from "./Pages/MyAccount/MyDeposits";
 import MyTransactions from "./Pages/MyAccount/MyTransactions";
 import FrenchLeagueOne from "./Pages/Leagues/FrenchLeagueOne";
+import MyFanPage from "./Pages/FanPages/MyFanPage";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <MainHome />,
+            },
+            {
+                path: "my-fanpage",
+                element: <MyFanPage />,
             },
             {
                 path: "uefa-champions-league",

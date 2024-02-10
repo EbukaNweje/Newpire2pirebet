@@ -23,3 +23,6 @@
   padding: 0 !important;
 }
 
+.ant-modal-content{
+  background: rgb(30 41 59) !important;
+}

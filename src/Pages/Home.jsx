@@ -7,9 +7,12 @@ import {useState} from "react";
 import {Drawer} from "antd";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {IoIosRemoveCircle} from "react-icons/io";
+import {useSelector} from "react-redux";
 
 const Home = () => {
     const [openSlip, setOpenSlip] = useState(false);
+    const betslip = useSelector((state) => state.newPier2Pier.newPier2Pier.user);
+    console.log(betslip);
     return (
         <>
             <div

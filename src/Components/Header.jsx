@@ -6,6 +6,8 @@ import {FaCaretDown} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 import {CiUser} from "react-icons/ci";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -21,6 +23,89 @@ const Header = () => {
     const [openLogin, setOpenLogin] = useState(false);
     const nav = useNavigate();
     const user = true;
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPwd, setLoginPwd] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [loadingSignUp, setLoadingSignup] = useState(false);
+    const [signUpmail, setSignUpMail] = useState("");
+    const [signUpPwd, setSignupPwd] = useState("");
+    const [FanPage, setFanPage] = useState("");
+
+    const handleResendOTP = () => {
+        // toast.loading("generating OTP code")
+        toast.loading("Generating OTP...");
+        const url =
+            "https://pier2pier.onrender.com/api/user/resend-verification-otp";
+        const data = {email: loginEmail};
+        axios
+            .post(url, data)
+            .then((response) => {
+                console.log(response);
+                toast.success(`${response?.data?.message}`);
+                localStorage.setItem("verifyToken", response?.data?.token);
+                setTimeout(() => {
+                    // nav(`/register-info/${data.email}`);
+                }, 2000);
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error("Error sending code, please try again");
+            });
+    };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        if (!loginPwd && !loginEmail) {
+            toast.error("Please enter both email and password");
+        } else {
+            setLoading(true);
+            const data = {email: loginEmail, password: loginPwd};
+            const loadingToast = toast.loading("Logging In...");
+            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-in";
+            axios
+                .post(url, data)
+                .then((res) => {
+                    console.log(res.data);
+                    toast.dismiss(loadingToast);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast.dismiss(loadingToast);
+                    setLoading(false);
+                    if (
+                        err.response.data.message ===
+                        "Email Not Verified, Please verify your email to log in."
+                    ) {
+                        handleResendOTP();
+                    }
+                });
+        }
+    };
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        if (!signUpmail && !signUpPwd && FanPage) {
+            toast.err("Please enter all fields");
+        } else {
+            setLoading(true);
+            const data = {email: loginEmail, password: loginPwd};
+            const loadingToast = toast.loading("Logging In...");
+            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-in";
+            axios
+                .post(url, data)
+                .then((res) => {
+                    console.log(res.data);
+                    toast.dismiss(loadingToast);
+                    setLoadingSignup(false);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast.dismiss(loadingToast);
+                    setLoadingSignup(false);
+                });
+        }
+    };
 
     return (
         <>
@@ -419,6 +504,8 @@ const Header = () => {
                             <input
                                 type="email"
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                value={signUpmail}
+                                onChange={(e) => setSignUpMail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -426,6 +513,8 @@ const Header = () => {
                             <input
                                 type="email"
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                value={setSignupPwd}
+                                onChange={(e) => setSignupPwd(e.target.value)}
                             />
                         </div>
                         <div className="w-full h-max">
@@ -433,21 +522,31 @@ const Header = () => {
                                 name=""
                                 id=""
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                value={FanPage}
+                                onChange={(e) => setFanPage(e.target.value)}
                             >
                                 <option value="">---Select Fanpage---</option>
-                                <option value="">Chelsea</option>
-                                <option value="">Man Utd</option>
-                                <option value="">Barcelona</option>
-                                <option value="">Liverpool</option>
-                                <option value="">Real Madrid</option>
-                                <option value="">PSG</option>
-                                <option value="">Arsenal</option>
-                                <option value="">Bayern Munich</option>
+                                <option value="CHE">Chelsea</option>
+                                <option value="MANUTD">Man Utd</option>
+                                <option value="BAR">Barcelona</option>
+                                <option value="LIV">Liverpool</option>
+                                <option value="REAL">Real Madrid</option>
+                                <option value="PSG">PSG</option>
+                                <option value="MON">Monacco</option>
+                                <option value="ARS">Arsenal</option>
+                                <option value="BAY">Bayern Munich</option>
+                                <option value="DOR">Dortmund</option>
+                                <option value="JUV">Juventus</option>
+                                <option value="INT">Inter Milan</option>
                             </select>
                         </div>
                     </div>
                     <div className="w-full h-20 flex items-center justify-center">
-                        <button className="px-4 py-2 rounded bg-green-900 text-white">
+                        <button
+                            className="px-4 py-2 rounded bg-green-900 text-white"
+                            disabled={loadingSignUp}
+                            onClick={handleSignUp}
+                        >
                             Register
                         </button>
                     </div>
@@ -475,6 +574,8 @@ const Header = () => {
                             <input
                                 type="email"
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                value={loginEmail}
+                                onChange={(e) => setLoginEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -482,12 +583,18 @@ const Header = () => {
                             <input
                                 type="email"
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                value={loginPwd}
+                                onChange={(e) => setLoginPwd(e.target.value)}
                             />
                         </div>
                     </div>
                     <div className="w-full h-20 flex items-center justify-center">
-                        <button className="px-4 py-2 rounded bg-green-900 text-white">
-                            Login
+                        <button
+                            className="px-4 py-2 rounded bg-green-900 text-white"
+                            disabled={loading}
+                            onClick={handleLogin}
+                        >
+                            {loading ? "Loading..." : "Log In"}
                         </button>
                     </div>
                 </div>

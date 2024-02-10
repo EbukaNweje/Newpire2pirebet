@@ -33,14 +33,14 @@
                     "label": "Deposit",
                     "address": "bc1qcr8te4kr609gcaqlc",
                     "paymentId": "e8b1d21a-da78-4",
-                    "status": true
+                    "status": false
                 }
             ],
             "withdrawal": [
                 {
                     "date": "2019-08-31",
                     "amount": 400,
-                    "status": true,
+                    "status": false,
                     "info": "pending",
                     "address": "bc1qcr8te4kr609gcaqlc",
                     "type": "BTC",
