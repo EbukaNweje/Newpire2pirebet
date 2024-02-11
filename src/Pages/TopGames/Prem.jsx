@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import games from "../../assets/Games.json";
 import data from "../../assets/data.json";
 import {useDispatch} from "react-redux";
-import {betSlip} from "../../Global/Features";
 import {Modal} from "antd";
 import {BsInfoCircle} from "react-icons/bs";
 import toast from "react-hot-toast";
+import {useSelector} from "react-redux";
+import {betSlip, removeSingle} from "../../Global/Features";
 
 const Prem = () => {
     // console.log(data[0].england.premier_league);
@@ -18,6 +19,10 @@ const Prem = () => {
         data.map(() => Math.floor(Math.random() * data[0]?.oddsData.length))
     );
     const [selectedGame, setSelectedGame] = useState({});
+    const fullBetSlip = useSelector(
+        (state) => state.newPier2Pier.newPier2Pier.slip
+    );
+    console.log(fullBetSlip);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -26,10 +31,10 @@ const Prem = () => {
                     Math.floor(Math.random() * data[0]?.oddsData.length)
                 )
             );
-        }, 3600000);
+        }, 600000);
 
         return () => clearInterval(intervalId);
-    }, [data]);
+    }, []);
 
     const [selectedTooltipIndex, setSelectedTooltipIndex] = useState(null);
     const [toolTipStates, setToolTipStates] = useState(
@@ -52,12 +57,12 @@ const Prem = () => {
         );
     };
 
-    const addBet = (userName, oddsPick) => {
+    const addBet = (userName, oddsPick, stakeValue) => {
         dispatch(
             betSlip({
                 userName,
                 oddsPick,
-
+                stakeValue,
                 selectedGame, // Include selectedGame in the dispatched data
             })
         );
@@ -143,14 +148,23 @@ const Prem = () => {
                                     </div>
                                     <div
                                         className="w-1/2 h-full flex items-center justify-center bg-slate-600 cursor-pointer"
-                                        onClick={() =>
-                                            addBet(
-                                                item.userName,
-                                                item.oddsData[
-                                                    selectedOddsIndices[index]
-                                                ].oddsPick
-                                            )
-                                        }
+                                        onClick={() => {
+                                          
+                                                addBet(
+                                                    item.userName,
+                                                    item.oddsData[
+                                                        selectedOddsIndices[
+                                                            index
+                                                        ]
+                                                    ].oddsPick,
+                                                    item.oddsData[
+                                                        selectedOddsIndices[
+                                                            index
+                                                        ]
+                                                    ].stake
+                                                );
+                                            
+                                        }}
                                     >
                                         <p className="w-max flex items-center gap-6">
                                             {

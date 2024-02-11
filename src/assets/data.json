@@ -302,7 +302,7 @@
             {
                 "oddsPick": "-0/x1",
                 "pickInfo": "No goal down and no extra stake offer",
-                "stake": "1"
+                "stake": 1
             },
             {
                 "oddsPick": "-1/x1",

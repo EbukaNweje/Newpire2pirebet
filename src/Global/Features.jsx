@@ -23,17 +23,24 @@ const features = createSlice({
             state.user = {};
             state.userToken = "";
         },
-        betSlip: (state, { payload }) => {
-            state.slip.push(payload)
+        betSlip: (state, {payload}) => {
+            const existindOddsIndex = state.slip.findIndex(
+                (item) => item.selectedGame.id === payload.selectedGame.id
+            );
+            if (existindOddsIndex !== -1) {
+                state.slip[existindOddsIndex].oddsPick = payload.oddsPick;
+            } else {
+                state.slip.push(payload);
+            }
         },
         clearSlip: (state) => {
             state.slip = [];
         },
         removeSingle: (state, {payload}) => {
             const updatedSlip = state.slip.filter(
-                (item) => item.bettor !== payload.bettor
+                (item) => item.selectedGame.id !== payload.selectedGame.id
             );
-            state.slip = updatedSlip;   
+            state.slip = updatedSlip;
         },
     },
 });

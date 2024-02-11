@@ -12,7 +12,8 @@
                     "draw": "20%",
                     "valid": true,
                     "home_fanpage": "MUN",
-                    "away_fanpage": "CHE"
+                    "away_fanpage": "CHE",
+                    "id": "game101"
                 },
                 {
                     "home": "Liverpool",
@@ -24,7 +25,8 @@
                     "draw": "20%",
                     "valid": true,
                     "home_fanpage": "LIV",
-                    "away_fanpage": "ARS"
+                    "away_fanpage": "ARS",
+                    "id": "game102"
                 },
                 {
                     "home": "Man City",
@@ -36,7 +38,8 @@
                     "draw": "20%",
                     "valid": true,
                     "home_fanpage": "MCI",
-                    "away_fanpage": "EVE"
+                    "away_fanpage": "EVE",
+                    "id": "game103"
                 }
             ],
             "fa_cup": [

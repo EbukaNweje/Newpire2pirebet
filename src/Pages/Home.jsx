@@ -34,7 +34,7 @@ const Home = () => {
                     className="fixed top-[90vh] right-5 w-14 h-14 flex items-center justify-center flex-col bg-lime-700 bg-opacity-80 text-white rounded"
                     onClick={() => setOpenSlip(true)}
                 >
-                    <p>1</p>
+                    <p>{betslip.length}</p>
                     <p className="text-sm">Betslip</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@ const Home = () => {
                 <div className="w-full h-[90vh] flex flex-col justify-between bg-[#1d1f1d] p-3 text-white overflow-y-auto scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-800 scrollbar-track-gray-300 scrollbar scrollbar-w-[0.3rem]">
                     <div className="w-full h-10 flex items-center border-b border-b-gray-500">
                         <p className="w-full flex justify-between items-center ">
-                            2 Selected
+                            {betslip.length} Selected
                         </p>
 
                         <div
@@ -62,42 +62,44 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="w-full h-[60vh] flex flex-col gap-2 overflow-y-auto overflow-hidden scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thin scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-                        <div className="w-full h-max bg-[#373a45] flex flex-col gap-2 p-2 rounded">
-                            <div className="w-full h-max flex justify-between">
-                                <p>Bridgeton Picks</p>
-                                <p className=" ">-3x5</p>
-                                <span>
-                                    <IoIosRemoveCircle className="w-6 h-6 cursor-pointer text-red-300" />
-                                </span>
-                            </div>
-                            <p className="w-full h-max flex items-center justify-center gap-2">
-                                <span>Chelsea</span>
-                                vs
-                                <span>Man Utd</span>
-                            </p>
-                            <div className="w-full h-max flex justify-between">
-                                <p className="w-max flex gap-1 h-max items-center text-xs">
-                                    USD
-                                    <input
-                                        type="number"
-                                        placeholder="stake"
-                                        className="w-20 h-8 pl-1 rounded outline-none text-black text-sm"
-                                    />
+                        {betslip.map((item, index) => (
+                            <div className="w-full h-max bg-[#373a45] flex flex-col gap-2 p-2 rounded" key={index}>
+                                <div className="w-full h-max flex justify-between">
+                                    <p>{item.userName} Picks</p>
+                                    <p className=" ">{item.oddsPick}</p>
+                                    <span>
+                                        <IoIosRemoveCircle className="w-6 h-6 cursor-pointer text-red-300" />
+                                    </span>
+                                </div>
+                                <p className="w-full h-max flex items-center justify-center gap-2">
+                                    <span>{item.selectedGame.home}</span>
+                                    vs
+                                    <span>{item.selectedGame.away}</span>
                                 </p>
-                                <p className="w-max flex gap-1 h-max items-center text-xs">
-                                    BTC
-                                    <div className="w-max h-8 px-2 rounded flex items-center outline-none text-black text-sm bg-slate-100">
-                                        1000.00000
-                                    </div>
-                                </p>
+                                <div className="w-full h-max flex justify-between">
+                                    <p className="w-max flex gap-1 h-max items-center text-xs">
+                                        USD
+                                        <input
+                                            type="number"
+                                            placeholder="stake"
+                                            className="w-20 h-8 pl-1 rounded outline-none text-black text-sm"
+                                        />
+                                    </p>
+                                    <p className="w-max flex gap-1 h-max items-center text-xs">
+                                        BTC
+                                        <div className="w-max h-8 px-2 rounded flex items-center outline-none text-black text-sm bg-slate-100">
+                                            1000.00000
+                                        </div>
+                                    </p>
+                                </div>
+                                <div className="w-full h-max flex justify-between">
+                                    <p>Stake Value: {item.stake}</p>
+                                    <p>
+                                        potential winnings <span>1000 USD</span>
+                                    </p>
+                                </div>
                             </div>
-                            <div className="w-full h-max flex justify-between">
-                                <p>Stake Value: 2</p>
-                                <p>
-                                    potential winnings <span>1000 USD</span>
-                                </p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                     <div className="w-full h-32 flex flex-col gap-3 p-2">
                         <p className="w-full h-max flex justify-between text-sm">
