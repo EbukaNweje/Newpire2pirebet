@@ -3,250 +3,332 @@
         "england": {
             "premier_league": [
                 {
-                    "home": "Man Utd",
-                    "away": "Chelsea",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "home": "Brentford",
+                    "away": "Liverpool",
+                    "date": "17-02-2024",
+                    "time": "13:30",
+                    "home_win": "11%",
+                    "away_win": "78%",
+                    "draw": "11%",
                     "valid": true,
-                    "home_fanpage": "MUN",
-                    "away_fanpage": "CHE",
-                    "id": "game101"
+                    "home_fanpage": "BRE",
+                    "away_fanpage": "LIV",
+                    "id": "eng101"
                 },
                 {
-                    "home": "Liverpool",
+                    "home": "Burnley",
                     "away": "Arsenal",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "date": "17-02-2024",
+                    "time": "16:00",
+                    "home_win": "8%",
+                    "away_win": "82%",
+                    "draw": "10%",
                     "valid": true,
-                    "home_fanpage": "LIV",
+                    "home_fanpage": "BUR",
                     "away_fanpage": "ARS",
-                    "id": "game102"
+                    "id": "eng102"
+                },
+                {
+                    "home": "Tottenham",
+                    "away": "Wolves",
+                    "date": "17-02-2024",
+                    "time": "16:00",
+                    "home_win": "75%",
+                    "away_win": "11%",
+                    "draw": "14%",
+                    "valid": true,
+                    "home_fanpage": "TOT",
+                    "away_fanpage": "WOL",
+                    "id": "eng103"
                 },
                 {
                     "home": "Man City",
-                    "away": "Everton",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "away": "Chelsea",
+                    "date": "17-02-2024",
+                    "time": "18:30",
+                    "home_win": "58%",
+                    "away_win": "30%",
+                    "draw": "12%",
                     "valid": true,
                     "home_fanpage": "MCI",
-                    "away_fanpage": "EVE",
-                    "id": "game103"
+                    "away_fanpage": "CHE",
+                    "id": "eng104"
+                },
+                {
+                    "home": "Luton",
+                    "away": "Man Utd",
+                    "date": "18-02-2024",
+                    "time": "17:30",
+                    "home_win": "14%",
+                    "away_win": "75%",
+                    "draw": "11%",
+                    "valid": true,
+                    "home_fanpage": "LUT",
+                    "away_fanpage": "MAN",
+                    "id": "eng105"
                 }
             ],
             "fa_cup": [],
-            "efl_cup": [
-                {
-                    "home": "Man Utd",
-                    "away": "Chelsea",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "MUN",
-                    "away_fanpage": "CHE"
-                }
-            ],
-            "community_shield": [
-                {
-                    "home": "Man Utd",
-                    "away": "Chelsea",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "MUN",
-                    "away_fanpage": "CHE"
-                }
-            ]
+            "efl_cup": [],
+            "community_shield": []
         },
         "spain": {
             "laliga": [
                 {
-                    "home": "Barcelona",
-                    "away": "Almeria",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "BAR",
-                    "away_fanpage": "ALM"
-                }
-            ],
-            "copa_del_rey": [
-                {
-                    "home": "Atletico Madrid",
-                    "away": "Atletico Bilbao",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "home": "Atl. Madrid",
+                    "away": "Las Palmas",
+                    "date": "17-02-2024",
+                    "time": "14:00",
+                    "home_win": "77%",
+                    "away_win": "9%",
+                    "draw": "14%",
                     "valid": true,
                     "home_fanpage": "ATM",
-                    "away_fanpage": "ATB"
+                    "away_fanpage": "LAS",
+                    "id": "spa101"
+                },
+                {
+                    "home": "Celta Vigo",
+                    "away": "Barcelona",
+                    "date": "17-02-2024",
+                    "time": "18:30",
+                    "home_win": "14%",
+                    "away_win": "75%",
+                    "draw": "11%",
+                    "valid": true,
+                    "home_fanpage": "CEL",
+                    "away_fanpage": "BAR",
+                    "id": "spa102"
+                },
+                {
+                    "home": "Valencia",
+                    "away": "Sevilla",
+                    "date": "17-02-2024",
+                    "time": "21:00",
+                    "home_win": "43%",
+                    "away_win": "31%",
+                    "draw": "25%",
+                    "valid": true,
+                    "home_fanpage": "CEL",
+                    "away_fanpage": "BAR",
+                    "id": "spa103"
+                },
+                {
+                    "home": "Rayo Vallecano",
+                    "away": "Real Madrid",
+                    "date": "18-02-2024",
+                    "time": "14:00",
+                    "home_win": "9%",
+                    "away_win": "82%",
+                    "draw": "9%",
+                    "valid": true,
+                    "home_fanpage": "CEL",
+                    "away_fanpage": "BAR",
+                    "id": "spa104"
                 }
             ],
-            "super_cup": [
-                {
-                    "home": "Real Madrid",
-                    "away": "Barcelona",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "RMA",
-                    "away_fanpage": "BAR"
-                }
-            ]
+            "copa_del_rey": [],
+            "super_cup": []
         },
         "italy": {
             "seria_a": [
                 {
-                    "home": "Juventus",
-                    "away": "Fiorentina",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "JUV",
-                    "away_fanpage": "FIO"
-                }
-            ],
-            "copa_italia": [
-                {
                     "home": "Inter",
-                    "away": "Genoa",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "away": "Salernitina",
+                    "date": "16-02-2024",
+                    "time": "21:00",
+                    "home_win": "63%",
+                    "away_win": "9%",
+                    "draw": "8%",
                     "valid": true,
                     "home_fanpage": "INT",
-                    "away_fanpage": "GEN"
-                }
-            ],
-            "italia_super_cup": [
+                    "away_fanpage": "SAL",
+                    "id": "ita101"
+                },
                 {
                     "home": "Napoli",
-                    "away": "Inter Milan",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "away": "Geneoa",
+                    "date": "17-02-2024",
+                    "time": "15:00",
+                    "home_win": "73%",
+                    "away_win": "17%",
+                    "draw": "10%",
                     "valid": true,
                     "home_fanpage": "NAP",
-                    "away_fanpage": "INT"
+                    "away_fanpage": "GEN",
+                    "id": "ita102"
+                },
+                {
+                    "home": "Verona",
+                    "away": "Juventus",
+                    "date": "17-02-2024",
+                    "time": "18:00",
+                    "home_win": "12%",
+                    "away_win": "12%",
+                    "draw": "76%",
+                    "valid": true,
+                    "home_fanpage": "VER",
+                    "away_fanpage": "JUV",
+                    "id": "ita103"
+                },
+                {
+                    "home": "Lazio",
+                    "away": "Bologna",
+                    "date": "18-02-2024",
+                    "time": "12:30",
+                    "home_win": "53%",
+                    "away_win": "19%",
+                    "draw": "28%",
+                    "valid": true,
+                    "home_fanpage": "LAZ",
+                    "away_fanpage": "BOL",
+                    "id": "ita104"
+                },
+                {
+                    "home": "Frosinone",
+                    "away": "Roma",
+                    "date": "18-02-2024",
+                    "time": "18:00",
+                    "home_win": "10%",
+                    "away_win": "74%",
+                    "draw": "15%",
+                    "valid": true,
+                    "home_fanpage": "FRO",
+                    "away_fanpage": "ROM",
+                    "id": "ita105"
                 }
-            ]
+            ],
+            "copa_italia": [],
+            "italia_super_cup": []
         },
         "germany": {
             "bundesliga": [
                 {
-                    "home": "Dortmund",
-                    "away": "Hamburg",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
+                    "home": "Heidenheim",
+                    "away": "Leverkusen",
+                    "date": "17-02-2024",
+                    "time": "15:30",
+                    "home_win": "9%",
+                    "away_win": "79%",
+                    "draw": "12%",
+                    "valid": true,
+                    "home_fanpage": "HEI",
+                    "away_fanpage": "LEV",
+                    "id": "ger101"
+                },
+                {
+                    "home": "Wolfsburg",
+                    "away": "Dortmund",
+                    "date": "17-02-2024",
+                    "time": "15:30",
+                    "home_win": "11%",
+                    "away_win": "71%",
+                    "draw": "18%",
+                    "valid": true,
+                    "home_fanpage": "WOL",
+                    "away_fanpage": "DOR",
+                    "id": "ger102"
+                },
+                {
+                    "home": "Leipzig",
+                    "away": "M'gladbach",
+                    "date": "17-02-2024",
+                    "time": "18:30",
+                    "home_win": "69%",
+                    "away_win": "11%",
                     "draw": "20%",
                     "valid": true,
-                    "home_fanpage": "DOR",
-                    "away_fanpage": "HAM"
+                    "home_fanpage": "LEI",
+                    "away_fanpage": "BMG",
+                    "id": "ger103"
+                },
+                {
+                    "home": "Bochum",
+                    "away": "Bayern",
+                    "date": "18-02-2024",
+                    "time": "17:30",
+                    "home_win": "9%",
+                    "away_win": "78%",
+                    "draw": "12%",
+                    "valid": true,
+                    "home_fanpage": "BOC",
+                    "away_fanpage": "BAY",
+                    "id": "ger104"
                 }
             ],
-            "dfb_pokal": [
-                {
-                    "home": "Augsburg",
-                    "away": "Mainz",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "AUS",
-                    "away_fanpage": "MAI"
-                }
-            ],
-            "german_super_cup": [
-                {
-                    "home": "Bayern Munich",
-                    "away": "Liepzig",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "BAY",
-                    "away_fanpage": "LEI"
-                }
-            ]
+            "dfb_pokal": [],
+            "german_super_cup": []
         },
         "france": {
             "ligue_one": [
                 {
-                    "home": "Monaco",
-                    "away": "Lyon",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
+                    "home": "Lyon",
+                    "away": "Nice",
+                    "date": "16-02-2024",
+                    "time": "21:00",
+                    "home_win": "50%",
+                    "away_win": "31%",
+                    "draw": "19%",
                     "valid": true,
-                    "home_fanpage": "MON",
-                    "away_fanpage": "LYO"
+                    "home_fanpage": "LYO",
+                    "away_fanpage": "OGC",
+                    "id": "fra101"
+                },
+                {
+                    "home": "Lille",
+                    "away": "Le Harve",
+                    "date": "17-02-2024",
+                    "time": "17:00",
+                    "home_win": "73%",
+                    "away_win": "8%",
+                    "draw": "19%",
+                    "valid": true,
+                    "home_fanpage": "LIL",
+                    "away_fanpage": "LEH",
+                    "id": "fra102"
+                },
+                {
+                    "home": "Nantes",
+                    "away": "PSG",
+                    "date": "17-02-2024",
+                    "time": "21:00",
+                    "home_win": "13%",
+                    "away_win": "72%",
+                    "draw": "15%",
+                    "valid": true,
+                    "home_fanpage": "NAN",
+                    "away_fanpage": "PSG",
+                    "id": "fra103"
+                },
+                {
+                    "home": "AS Monaco",
+                    "away": "Toulouse",
+                    "date": "18-02-2024",
+                    "time": "15:00",
+                    "home_win": "73%",
+                    "away_win": "8%",
+                    "draw": "19%",
+                    "valid": true,
+                    "home_fanpage": "ASM",
+                    "away_fanpage": "TOU",
+                    "id": "fra104"
+                },
+                {
+                    "home": "Brest",
+                    "away": "Marseille",
+                    "date": "18-02-2024",
+                    "time": "20:45",
+                    "home_win": "37%",
+                    "away_win": "42%",
+                    "draw": "22%",
+                    "valid": true,
+                    "home_fanpage": "BRE",
+                    "away_fanpage": "MAR",
+                    "id": "fra105"
                 }
             ],
-            "coupe_de_france": [
-                {
-                    "home": "Paris Saint German",
-                    "away": "Reims",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "PSG",
-                    "away_fanpage": "REI"
-                }
-            ],
-            "trophee_de_champions": [
-                {
-                    "home": "Paris Saint German",
-                    "away": "Marsielle",
-                    "date": "02-02-2024",
-                    "time": "02:00",
-                    "home_win": "40%",
-                    "away_win": "40%",
-                    "draw": "20%",
-                    "valid": true,
-                    "home_fanpage": "PSG",
-                    "away_fanpage": "MAR"
-                }
-            ]
+            "coupe_de_france": [],
+            "trophee_de_champions": []
         }
     }
 ]

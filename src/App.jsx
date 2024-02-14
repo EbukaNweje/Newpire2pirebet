@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Verify from "./Pages/Verify";
-// import TestApi from "./Pages/TestApi";
+import TestApi from "./Pages/TestApi";
 import LivescoreWidget from "./Pages/Livescorewidget";
 import MainHome from "./Pages/MainHome";
 import PremierLeague from "./Pages/Leagues/PremierLeague";
@@ -163,7 +163,7 @@ const router = createBrowserRouter([
             },
         ],
     },
-    // {path: "/faq", element: <Faq />},
+    {path: "/testapi", element: <TestApi />},
 ]);
 
 const App = () => {
