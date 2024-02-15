@@ -8,6 +8,9 @@ import {CiUser} from "react-icons/ci";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import {useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
+import {userData, isLoggedInUser, logout} from "../Global/Features";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -22,19 +25,26 @@ const Header = () => {
     const [openSignUp, setOpenSignUp] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const nav = useNavigate();
-    const user = true;
+    const dispatch = useDispatch();
+
+    const user = useSelector((state) => state.newPier2Pier.newPier2Pier.user);
+    const isLoggedIn = useSelector(
+        (state) => state.newPier2Pier.newPier2Pier.isLoggedIn
+    );
+    // console.log("Is it logged in?", isLoggedIn);
+    console.log("Is User?", user);
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPwd, setLoginPwd] = useState("");
     const [loading, setLoading] = useState(false);
     const [loadingSignUp, setLoadingSignup] = useState(false);
+    const [loadingVerify, setLoadingVerify] = useState(false);
     const [signUpmail, setSignUpMail] = useState("");
     const [signUpPwd, setSignupPwd] = useState("");
     const [FanPage, setFanPage] = useState("");
     const [openVerify, setOpenVerify] = useState(false);
 
     const handleResendOTP = () => {
-        // toast.loading("generating OTP code")
-        toast.loading("Generating OTP...");
+        const loadingToast = toast.loading("Generating OTP...");
         const url =
             "https://pier2pier.onrender.com/api/user/resend-verification-otp";
         const data = {email: loginEmail};
@@ -42,13 +52,13 @@ const Header = () => {
             .post(url, data)
             .then((response) => {
                 console.log(response);
+                toast.dismiss(loadingToast);
                 toast.success(`${response?.data?.message}`);
                 localStorage.setItem("verifyToken", response?.data?.token);
-                setTimeout(() => {
-                    // nav(`/register-info/${data.email}`);
-                }, 2000);
+                setOpenVerify(true)
             })
             .catch((error) => {
+                toast.dismiss(loadingToast);
                 console.log(error);
                 toast.error("Error sending code, please try again");
             });
@@ -62,20 +72,23 @@ const Header = () => {
             setLoading(true);
             const data = {email: loginEmail, password: loginPwd};
             const loadingToast = toast.loading("Logging In...");
-            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-in";
+            const url = "https://pire2pirebet-back-end.vercel.app/api";
             axios
                 .post(url, data)
                 .then((res) => {
                     console.log(res.data);
                     toast.dismiss(loadingToast);
                     setLoading(false);
-                    setOpenLogin(false)
+                    setOpenLogin(false);
+                    dispatch(userData(res.data));
+                    dispatch(isLoggedInUser(true));
                 })
                 .catch((err) => {
                     console.log(err);
                     toast.dismiss(loadingToast);
                     setLoading(false);
-                    setOpenLogin(false)
+                    setOpenLogin(false);
+                    toast.error(err.response.data.message);
                     if (
                         err.response.data.message ===
                         "Email Not Verified, Please verify your email to log in."
@@ -98,22 +111,56 @@ const Header = () => {
                 fanClub: FanPage,
             };
             const loadingToast = toast.loading("Logging In...");
-            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-up";
+            const url = "https://pier2pier.onrender.com/api/sign-up";
             axios
                 .post(url, data)
                 .then((res) => {
                     console.log(res.data);
+                    localStorage.setItem(
+                        "pierVerifyToken",
+                        res?.data?.data?.token
+                    );
+                    localStorage.setItem("pierEmailSignUp", signUpmail);
                     toast.dismiss(loadingToast);
                     toast.success(res.data.message);
-                    setOpenSignUp(false)
+                    setOpenSignUp(false);
                     setLoadingSignup(false);
-                    setOpenVerify(true)
+                    setOpenVerify(true);
                 })
                 .catch((err) => {
                     console.log(err);
                     toast.dismiss(loadingToast);
                     toast.error(err?.response.data.message);
                     setLoadingSignup(false);
+                });
+        }
+    };
+
+    const [otp, setOtp] = useState("");
+
+    const token = localStorage.getItem("pierVerifyToken");
+    const emailLS = localStorage.getItem("pierEmailSignUp");
+
+    const handleVerify = () => {
+        if (!otp) {
+            alert("Please enter the OTP");
+        } else {
+            setLoadingVerify(true);
+            const url = `https://pier2pier.onrender.com/api/user/verify/${token}`;
+            const data = {otp: otp};
+            axios
+                .post(url, data)
+                .then((response) => {
+                    console.log(response);
+                    toast.success(`${response.data.message}`);
+                    setLoadingVerify(false);
+                    setOpenVerify(false)
+                    setOpenLogin(true)
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toast.error(`${error.response.data.message}`);
+                    setLoadingVerify(false);
                 });
         }
     };
@@ -136,7 +183,7 @@ const Header = () => {
                     />
                 </div>
                 <div className="w-[30%] phone:w-max h-max flex items-center justify-end gap-4">
-                    {!user ? (
+                    {isLoggedIn ? (
                         <div className="w-20 h-max flex justify-end relative">
                             <CiUser
                                 className="w-8 h-8 border-2 text-white border-gray-50 rounded-full flex items-center justify-center cursor-pointer p-1"
@@ -219,7 +266,10 @@ const Header = () => {
                                     <div className="w-full h-12 flex flex-col justify-center gap-2 text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
                                         <p>My Betslips</p>
                                     </div>
-                                    <div className="w-full h-12 flex flex-col gap-2 justify-center text-sm bg-slate-700 rounded-lg p-1 cursor-pointer">
+                                    <div
+                                        className="w-full h-12 flex flex-col gap-2 justify-center text-sm bg-slate-700 rounded-lg p-1 cursor-pointer"
+                                        onClick={() => dispatch(logout())}
+                                    >
                                         <p>Logout</p>
                                     </div>
                                 </div>
@@ -566,14 +616,23 @@ const Header = () => {
                     <div className="w-full h-20 flex items-center justify-center text-2xl">
                         Verify
                     </div>
-                    <div className="w-full h-max flex flex-col gap-4">
-                        <input type="text" />
+                    <div className="w-full h-max flex items-center justify-center mb-3">
+                        <p>Enter the otp sent to {emailLS}</p>
+                    </div>
+                    <div className="w-full h-max flex flex-col items-center gap-4">
+                        <input
+                            type="text"
+                            value={otp.trim()}
+                            onChange={(e) => setOtp(e.target.value)}
+                            className="w-1/2 h-10 rounded text-center text-black"
+                            placeholder="Enter otp"
+                        />
                     </div>
                     <div className="w-full h-20 flex items-center justify-center">
                         <button
-                            className="px-4 py-2 rounded bg-green-900 text-white"
-                            // disabled={loadingSignUp}
-                            // onClick={handleSignUp}
+                            className="px-4 py-2 rounded bg-green-900 text-white disabled:bg-green-500 disabled:cursor-not-allowed"
+                            disabled={loadingVerify}
+                            onClick={handleVerify}
                         >
                             Verify
                         </button>
@@ -657,7 +716,7 @@ const Header = () => {
                 closeIcon={true}
                 onCancel={() => setOpenLogin(false)}
             >
-                <div className="w-full h-max">
+                <div className="w-full h-max text-white">
                     <div className="w-full h-20 flex items-center justify-center text-2xl">
                         Login
                     </div>
@@ -666,7 +725,7 @@ const Header = () => {
                             <p>Email</p>
                             <input
                                 type="email"
-                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
                                 value={loginEmail}
                                 onChange={(e) => setLoginEmail(e.target.value)}
                             />
@@ -675,7 +734,7 @@ const Header = () => {
                             <p>Password</p>
                             <input
                                 type="email"
-                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
                                 value={loginPwd}
                                 onChange={(e) => setLoginPwd(e.target.value)}
                             />
