@@ -30,6 +30,7 @@ const Header = () => {
     const [signUpmail, setSignUpMail] = useState("");
     const [signUpPwd, setSignupPwd] = useState("");
     const [FanPage, setFanPage] = useState("");
+    const [openVerify, setOpenVerify] = useState(false);
 
     const handleResendOTP = () => {
         // toast.loading("generating OTP code")
@@ -68,11 +69,13 @@ const Header = () => {
                     console.log(res.data);
                     toast.dismiss(loadingToast);
                     setLoading(false);
+                    setOpenLogin(false)
                 })
                 .catch((err) => {
                     console.log(err);
                     toast.dismiss(loadingToast);
                     setLoading(false);
+                    setOpenLogin(false)
                     if (
                         err.response.data.message ===
                         "Email Not Verified, Please verify your email to log in."
@@ -89,19 +92,27 @@ const Header = () => {
             toast.err("Please enter all fields");
         } else {
             setLoading(true);
-            const data = {email: loginEmail, password: loginPwd};
+            const data = {
+                email: signUpmail,
+                password: signUpPwd,
+                fanClub: FanPage,
+            };
             const loadingToast = toast.loading("Logging In...");
-            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-in";
+            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-up";
             axios
                 .post(url, data)
                 .then((res) => {
                     console.log(res.data);
                     toast.dismiss(loadingToast);
+                    toast.success(res.data.message);
+                    setOpenSignUp(false)
                     setLoadingSignup(false);
+                    setOpenVerify(true)
                 })
                 .catch((err) => {
                     console.log(err);
                     toast.dismiss(loadingToast);
+                    toast.error(err?.response.data.message);
                     setLoadingSignup(false);
                 });
         }
@@ -270,17 +281,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"/uefa-champions-league"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"/uefa-champions-league"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Uefa Champions League
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"uefa-europa-league"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"uefa-europa-league"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Uefa Europa League
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"uefa-super-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"uefa-super-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             Uefa Super Cup
                                         </div>
@@ -308,22 +328,34 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"premier-league"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"premier-league"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Premier League
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"fa-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"fa-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             FA Cup
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"efl-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"efl-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             EFL Cup
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"community-shield"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"community-shield"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             Community Shield
                                         </div>
@@ -349,17 +381,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"laliga"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"laliga"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Laliga
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"copa-del-rey"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"copa-del-rey"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Copa del ray
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"spanish-super-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"spanish-super-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             Spanish Super Cup
                                         </div>
@@ -387,17 +428,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"bundesliga"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"bundesliga"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Bundesliga
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"dfb-pokal"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"dfb-pokal"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             DFB Pokal
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"german-super-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"german-super-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             German Super Cup
                                         </div>
@@ -423,17 +473,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"seria-a"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"seria-a"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Seria A
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"copa-italia"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"copa-italia"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Copa Italia
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"italia-super-cup"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"italia-super-cup"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             Italia Super Cup
                                         </div>
@@ -461,17 +520,26 @@ const Header = () => {
                                             : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
                                     }  w-full flex flex-col gap-2 px-2`}
                                 >
-                                    <NavLink to={"ligue-one"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"ligue-one"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Ligue 1
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"coupe-de-france"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"coupe-de-france"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4">
                                             Coupe De France
                                         </div>
                                     </NavLink>
-                                    <NavLink to={"trophee-des-champions"}>
+                                    <NavLink
+                                        onClick={() => setOpenLeft(false)}
+                                        to={"trophee-des-champions"}
+                                    >
                                         <div className="w-full h-9 rounded flex items-center cursor-pointer bg-gray-700 px-4 mb-2">
                                             Trophee des champions
                                         </div>
@@ -488,13 +556,38 @@ const Header = () => {
                 </div>
             </Drawer>
             <Modal
+                open={openVerify}
+                cancelButtonProps={{hidden: true}}
+                okButtonProps={{hidden: true}}
+                closeIcon={true}
+                onCancel={() => setOpenVerify(false)}
+            >
+                <div className="w-full h-max text-white">
+                    <div className="w-full h-20 flex items-center justify-center text-2xl">
+                        Verify
+                    </div>
+                    <div className="w-full h-max flex flex-col gap-4">
+                        <input type="text" />
+                    </div>
+                    <div className="w-full h-20 flex items-center justify-center">
+                        <button
+                            className="px-4 py-2 rounded bg-green-900 text-white"
+                            // disabled={loadingSignUp}
+                            // onClick={handleSignUp}
+                        >
+                            Verify
+                        </button>
+                    </div>
+                </div>
+            </Modal>
+            <Modal
                 open={openSignUp}
                 cancelButtonProps={{hidden: true}}
                 okButtonProps={{hidden: true}}
                 closeIcon={true}
                 onCancel={() => setOpenSignUp(false)}
             >
-                <div className="w-full h-max">
+                <div className="w-full h-max text-white">
                     <div className="w-full h-20 flex items-center justify-center text-2xl">
                         Register
                     </div>
@@ -503,7 +596,7 @@ const Header = () => {
                             <p>Email</p>
                             <input
                                 type="email"
-                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
                                 value={signUpmail}
                                 onChange={(e) => setSignUpMail(e.target.value)}
                             />
@@ -511,13 +604,13 @@ const Header = () => {
                         <div>
                             <p>Password</p>
                             <input
-                                type="email"
-                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3"
-                                value={setSignupPwd}
+                                type="password"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
+                                value={signUpPwd}
                                 onChange={(e) => setSignupPwd(e.target.value)}
                             />
                         </div>
-                        <div className="w-full h-max">
+                        <div className="w-full h-max text-black">
                             <select
                                 name=""
                                 id=""

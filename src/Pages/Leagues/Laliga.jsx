@@ -7,6 +7,7 @@ import {BsInfoCircle} from "react-icons/bs";
 import toast from "react-hot-toast";
 // import {useSelector} from "react-redux";
 import {betSlip} from "../../Global/Features";
+import {CgDanger} from "react-icons/cg";
 
 const Laliga = () => {
     const laliga = games[0].spain.laliga;
@@ -128,7 +129,10 @@ const Laliga = () => {
                             ))}
                         </>
                     ) : (
-                        "No matches available."
+                        <div className="h-[30vh] w-full flex items-center flex-col gap-4 justify-center ">
+                            <CgDanger className="w-10 h-10" />
+                            <p>No Available matches</p>
+                        </div>
                     )}
                 </div>
             </div>
