@@ -339,6 +339,7 @@ const AllGames = () => {
                                                     selectedOddsIndices[index]
                                                 ].stake
                                             );
+                                            setOpenFanPage(false)
                                         }}
                                     >
                                         <p className="w-max flex items-center gap-6">

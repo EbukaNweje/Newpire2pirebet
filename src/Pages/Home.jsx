@@ -8,7 +8,7 @@ import {Drawer} from "antd";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import {IoIosRemoveCircle} from "react-icons/io";
 import {useSelector} from "react-redux";
-import {clearSlip} from "../Global/Features";
+import {clearSlip, removeSingle} from "../Global/Features";
 import {useDispatch} from "react-redux";
 import axios from "axios";
 
@@ -21,10 +21,10 @@ const Home = () => {
     const dispatch = useDispatch();
     const [stakeAmounts, setStakeAmounts] = useState({});
 
-    const handleStakeChange = (bettor, value) => {
+    const handleStakeChange = (userName, value) => {
         setStakeAmounts((prevAmounts) => ({
             ...prevAmounts,
-            [bettor]: value,
+            [userName]: value,
         }));
     };
 
@@ -34,6 +34,10 @@ const Home = () => {
                 total + parseFloat(stakeAmounts[item.userName] || 0),
             0
         );
+    };
+
+    const handleRemoveItem = (userName) => {
+        dispatch(removeSingle({userName}));
     };
 
     const [exchangeRate, setExchangeRate] = useState(null);
@@ -55,9 +59,9 @@ const Home = () => {
     const roundedTotalBTCStake = parseFloat(stakeValueBTC.toFixed(8));
     // console.log("Total BTC:",roundedTotalBTCStake);
 
-    const calculateBTCValue = (bettor) => {
+    const calculateBTCValue = (userName) => {
         const stakeValueBTC =
-            (parseFloat(stakeAmounts[bettor]) || 0) / exchangeRate;
+            (parseFloat(stakeAmounts[userName]) || 0) / exchangeRate;
         return parseFloat(stakeValueBTC.toFixed(8));
     };
 
@@ -65,7 +69,7 @@ const Home = () => {
         return betslip.reduce(
             (totalReturns, item) =>
                 totalReturns +
-                item.stakeValue * parseFloat(stakeAmounts[item.bettor] || 0),
+                item.stakeValue * parseFloat(stakeAmounts[item.userName] || 0),
             0
         );
     };
@@ -124,7 +128,7 @@ const Home = () => {
                                     <p>{item.userName} Picks</p>
                                     <p className=" ">{item.oddsPick}</p>
                                     <span>
-                                        <IoIosRemoveCircle className="w-6 h-6 cursor-pointer text-red-300" />
+                                        <IoIosRemoveCircle className="w-6 h-6 cursor-pointer text-red-300" onClick={()=>handleRemoveItem(item.userName)}/>
                                     </span>
                                 </div>
                                 <p className="w-full h-max flex items-center justify-center gap-2">
@@ -140,7 +144,8 @@ const Home = () => {
                                             placeholder="stake"
                                             className="w-20 h-8 pl-1 rounded outline-none text-black text-sm"
                                             value={
-                                                stakeAmounts[item.userName] || ""
+                                                stakeAmounts[item.userName] ||
+                                                ""
                                             }
                                             onChange={(e) =>
                                                 handleStakeChange(
@@ -173,10 +178,12 @@ const Home = () => {
                     </div>
                     <div className="w-full h-32 flex flex-col gap-3 p-2">
                         <p className="w-full h-max flex justify-between text-sm">
-                            Stakes ${calculateTotalStake()} <span> Stake BTC: {roundedTotalBTCStake}</span>
+                            Stakes ${calculateTotalStake()}{" "}
+                            <span> Stake BTC: {roundedTotalBTCStake}</span>
                         </p>
                         <p className="w-full h-max flex justify-between text-sm">
-                            Returns ${calculateTotalReturns()} <span>Returns BTC: {roundedTotalReturn}</span>
+                            Returns ${calculateTotalReturns()}{" "}
+                            <span>Returns BTC: {roundedTotalReturn}</span>
                         </p>
                         <button className="w-full h-12 rounded bg-green-400 flex items-center justify-center">
                             Book Bet

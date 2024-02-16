@@ -43,7 +43,7 @@ const features = createSlice({
         },
         removeSingle: (state, {payload}) => {
             const updatedSlip = state.slip.filter(
-                (item) => item.selectedGame.id !== payload.selectedGame.id
+                (item) => item.userName !== payload.userName
             );
             state.slip = updatedSlip;
         },
