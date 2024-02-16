@@ -19,7 +19,7 @@ const features = createSlice({
             state.isLoggedIn = payload;
             // console.log("Is Logged In?", payload);
         },
-        token: (state, {payload}) => {
+        loginToken: (state, {payload}) => {
             state.userToken = payload;
             console.log("User Token:", payload);
         },
@@ -50,7 +50,7 @@ const features = createSlice({
     },
 });
 
-export const {userData,isLoggedInUser, logout, token, betSlip, clearSlip, removeSingle} =
+export const {userData,isLoggedInUser, logout, loginToken, betSlip, clearSlip, removeSingle} =
     features.actions;
 
 export default features.reducer;

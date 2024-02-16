@@ -10,7 +10,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
-import {userData, isLoggedInUser, logout} from "../Global/Features";
+import {userData, isLoggedInUser, logout, loginToken} from "../Global/Features";
 
 const Header = () => {
     const [openLeft, setOpenLeft] = useState(false);
@@ -54,8 +54,9 @@ const Header = () => {
                 console.log(response);
                 toast.dismiss(loadingToast);
                 toast.success(`${response?.data?.message}`);
-                localStorage.setItem("verifyToken", response?.data?.token);
-                setOpenVerify(true)
+                localStorage.setItem("pierVerifyToken", response?.data?.token);
+                localStorage.setItem("pierEmailSignUp", loginEmail);
+                setOpenVerify(true);
             })
             .catch((error) => {
                 toast.dismiss(loadingToast);
@@ -72,7 +73,7 @@ const Header = () => {
             setLoading(true);
             const data = {email: loginEmail, password: loginPwd};
             const loadingToast = toast.loading("Logging In...");
-            const url = "https://pire2pirebet-back-end.vercel.app/api";
+            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-in";
             axios
                 .post(url, data)
                 .then((res) => {
@@ -80,8 +81,11 @@ const Header = () => {
                     toast.dismiss(loadingToast);
                     setLoading(false);
                     setOpenLogin(false);
-                    dispatch(userData(res.data));
+                    dispatch(loginToken(res.data.token));
+                    dispatch(userData(res.data.user));
                     dispatch(isLoggedInUser(true));
+                    setLoginEmail("")
+                    setLoginPwd("")
                 })
                 .catch((err) => {
                     console.log(err);
@@ -97,6 +101,23 @@ const Header = () => {
                     }
                 });
         }
+    };
+
+    const handleMailSender = () => {
+        // toast.loading("generating OTP code")
+        const url = "https://pier2pier.onrender.com/api/signupmail";
+        const data = {email: signUpmail};
+        axios
+            .post(url, data)
+            .then((response) => {
+                console.log(response);
+                toast.success(`${response.data.message}`);
+                setOpenVerify(true);
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error("Error sending code, please try again");
+            });
     };
 
     const handleSignUp = (e) => {
@@ -123,9 +144,14 @@ const Header = () => {
                     localStorage.setItem("pierEmailSignUp", signUpmail);
                     toast.dismiss(loadingToast);
                     toast.success(res.data.message);
+                    const created = true;
+                    if (created) {
+                        handleMailSender();
+                    } else {
+                        toast.error("Error Creating User");
+                    }
                     setOpenSignUp(false);
                     setLoadingSignup(false);
-                    setOpenVerify(true);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -154,8 +180,8 @@ const Header = () => {
                     console.log(response);
                     toast.success(`${response.data.message}`);
                     setLoadingVerify(false);
-                    setOpenVerify(false)
-                    setOpenLogin(true)
+                    setOpenVerify(false);
+                    setOpenLogin(true);
                 })
                 .catch((error) => {
                     console.log(error);
