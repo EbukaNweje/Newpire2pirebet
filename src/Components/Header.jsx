@@ -1,4 +1,4 @@
-import {IoIosMenu} from "react-icons/io";
+import {IoIosMailUnread, IoIosMenu} from "react-icons/io";
 import logo from "../assets/PierLogo.svg";
 import {Drawer, Modal} from "antd";
 import {useState} from "react";
@@ -13,6 +13,9 @@ import {useDispatch} from "react-redux";
 import {userData, isLoggedInUser, logout, loginToken} from "../Global/Features";
 
 const Header = () => {
+    const [openInbox, setOpenInbox] = useState(false);
+    const [openAcceptModal, setOpenAcceptModal] = useState(false);
+    const testData = [1, 2, 3, 4, 5];
     const [openLeft, setOpenLeft] = useState(false);
     const [europe, setEurope] = useState(false);
     const [england, setEngland] = useState(false);
@@ -84,8 +87,8 @@ const Header = () => {
                     dispatch(loginToken(res.data.token));
                     dispatch(userData(res.data.user));
                     dispatch(isLoggedInUser(true));
-                    setLoginEmail("")
-                    setLoginPwd("")
+                    setLoginEmail("");
+                    setLoginPwd("");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -210,7 +213,12 @@ const Header = () => {
                 </div>
                 <div className="w-[30%] phone:w-max h-max flex items-center justify-end gap-4">
                     {isLoggedIn ? (
-                        <div className="w-20 h-max flex justify-end relative">
+                        <div className="w-20 h-max flex justify-end gap-2 relative">
+                            <IoIosMailUnread
+                                className="w-8 h-8 border-2 text-white border-gray-50 rounded-full flex items-center justify-center cursor-pointer p-1"
+                                onClick={() => setOpenInbox(!openInbox)}
+                            />
+
                             <CiUser
                                 className="w-8 h-8 border-2 text-white border-gray-50 rounded-full flex items-center justify-center cursor-pointer p-1"
                                 onClick={() => setDrop(!drop)}
@@ -320,6 +328,84 @@ const Header = () => {
                     )}
                 </div>
             </div>
+            <Drawer
+                open={openInbox}
+                onClose={() => setOpenInbox(false)}
+                placement="right"
+                maskClosable={true}
+                width={300}
+                title={"INBOX"}
+                className="text-white"
+                style={{background: "#1d1f1d"}}
+            >
+                <div className="w-full h-[90vh] overflow-y-auto flex flex-col gap-2 p-2">
+                    {testData.map((index) => (
+                        <div
+                            className="w-full h-max bg-slate-700 rounded flex flex-col gap-1 p-1"
+                            key={index}
+                        >
+                            <p>Offer against game ID: #ABCD</p>
+                            <p className="w-full h-max flex justify-between">
+                                Game <span>Chelsea vs Man Utd</span>
+                            </p>
+                            <p className="w-full h-max flex justify-between">
+                                Your Pick <span>Home -1</span>
+                            </p>
+                            <p className="w-full h-max flex justify-between">
+                                Offer against <span>x3</span>
+                            </p>
+                            <button
+                                className="w-max h-max px-4 py-2 rounded bg-green-600"
+                                onClick={() => setOpenAcceptModal(true)}
+                            >
+                                Accept
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            </Drawer>
+            <Modal
+                open={openAcceptModal}
+                cancelButtonProps={{hidden: true}}
+                okButtonProps={{hidden: true}}
+                closeIcon={true}
+                onCancel={() => setOpenAcceptModal(false)}
+            >
+                <div className="w-full h-max flex flex-col items-center text-white">
+                    <p>Confirm Offer</p>
+                    <div className="w-full h-max flex flex-col gap-2">
+                        <p className="w-full h-max flex justify-between">
+                            Game: <span>Chelsea vs Man Utd</span>
+                        </p>
+                        <p className="w-full h-max flex justify-between">
+                            Your Pick: <span>Home -1</span>
+                        </p>
+                        <p className="w-full h-max flex justify-between">
+                            Offer against: <span>x3</span>
+                        </p>
+                        <p className="w-full h-max flex justify-between">
+                            Your Stake: <span>100 USD</span>
+                        </p>
+                        <p className="w-full h-max flex justify-between">
+                            Total Returns: <span>$300</span>
+                        </p>
+                        <p className="w-full h-max flex justify-between">
+                            Total Returns BTC: <span>0.0049138 BTC</span>
+                        </p>
+                    </div>
+                    <div className="w-full h-max p-2 flex items-center justify-center gap-3">
+                        <button className="w-max h-max px-4 py-2 rounded bg-green-600">
+                            Accept
+                        </button>
+                        <button
+                            className="w-max h-max px-4 py-2 rounded bg-red-600"
+                            onClick={() => setOpenAcceptModal(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </Modal>
             <Drawer
                 open={openLeft}
                 onClose={() => setOpenLeft(false)}
@@ -631,6 +717,7 @@ const Header = () => {
                     </div>
                 </div>
             </Drawer>
+
             <Modal
                 open={openVerify}
                 cancelButtonProps={{hidden: true}}

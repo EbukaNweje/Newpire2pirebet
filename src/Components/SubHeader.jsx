@@ -9,6 +9,11 @@ const SubHeader = () => {
                         Home
                     </div>
                 </NavLink>
+                <NavLink to={"markets"}>
+                    <div className="w-max h-full px-4 flex items-center justify-center cursor-pointer text-white hover:text-gray-400 transition-all duration-500">
+                        Markets
+                    </div>
+                </NavLink>
                 <NavLink to={"live-score"}>
                     <div className="w-max h-full px-4 flex items-center justify-center cursor-pointer text-white hover:text-gray-400 transition-all duration-500">
                         Live Scores

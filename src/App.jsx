@@ -35,6 +35,7 @@ import MyDeposits from "./Pages/MyAccount/MyDeposits";
 import MyTransactions from "./Pages/MyAccount/MyTransactions";
 import FrenchLeagueOne from "./Pages/Leagues/FrenchLeagueOne";
 import MyFanPage from "./Pages/FanPages/MyFanPage";
+import Markets from "./Pages/Markets";
 
 
 const router = createBrowserRouter([
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
             {
                 path: "live-score",
                 element: <LivescoreWidget />,
+            },
+            {
+                path: "markets",
+                element: <Markets />,
             },
         ],
     },
