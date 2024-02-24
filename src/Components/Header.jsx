@@ -42,6 +42,8 @@ const Header = () => {
     const [loadingSignUp, setLoadingSignup] = useState(false);
     const [loadingVerify, setLoadingVerify] = useState(false);
     const [signUpmail, setSignUpMail] = useState("");
+    const [signUpFname, setSignUpFname] = useState("")
+    const [signUpUname, setSignUpUname] = useState("")
     const [signUpPwd, setSignupPwd] = useState("");
     const [FanPage, setFanPage] = useState("");
     const [openVerify, setOpenVerify] = useState(false);
@@ -125,7 +127,7 @@ const Header = () => {
 
     const handleSignUp = (e) => {
         e.preventDefault();
-        if (!signUpmail && !signUpPwd && FanPage) {
+        if (!signUpmail && !signUpPwd && !FanPage && !signUpFname && !signUpUname) {
             toast.err("Please enter all fields");
         } else {
             setLoading(true);
@@ -133,6 +135,8 @@ const Header = () => {
                 email: signUpmail,
                 password: signUpPwd,
                 fanClub: FanPage,
+                fullName: signUpFname,
+                userName: signUpUname
             };
             const loadingToast = toast.loading("Logging In...");
             const url = "https://pier2pier.onrender.com/api/sign-up";
@@ -764,6 +768,24 @@ const Header = () => {
                         Register
                     </div>
                     <div className="w-full h-max flex flex-col gap-4">
+                        <div className="w-full h-max">
+                            <p>Full Name</p>
+                            <input
+                                type="text"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
+                                value={signUpFname}
+                                onChange={(e) => setSignUpFname(e.target.value)}
+                            />
+                        </div>
+                        <div className="w-full h-max">
+                            <p>User Name</p>
+                            <input
+                                type="email"
+                                className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
+                                value={signUpUname}
+                                onChange={(e) => setSignUpUname(e.target.value)}
+                            />
+                        </div>
                         <div className="w-full h-max">
                             <p>Email</p>
                             <input
