@@ -96,7 +96,7 @@ const Header = () => {
                     console.log(err);
                     toast.dismiss(loadingToast);
                     setLoading(false);
-                    setOpenLogin(false);
+                    // setOpenLogin(false);
                     toast.error(err.response.data.message);
                     if (
                         err.response.data.message ===
@@ -138,8 +138,8 @@ const Header = () => {
                 fullName: signUpFname,
                 userName: signUpUname
             };
-            const loadingToast = toast.loading("Logging In...");
-            const url = "https://pier2pier.onrender.com/api/sign-up";
+            const loadingToast = toast.loading("Loading In...");
+            const url = "https://pire2pirebet-back-end.vercel.app/api/sign-up";
             axios
                 .post(url, data)
                 .then((res) => {
@@ -230,9 +230,9 @@ const Header = () => {
                             {drop && (
                                 <div className="absolute top-10 z-20 right-0 bg-slate-800 w-56 rounded p-2 h-max flex flex-col gap-2 text-white">
                                     <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
-                                        <p>Mark Spencer</p>
+                                        <p>{user?.fullName}</p>
                                         <p className="w-full flex gap-2">
-                                            User ID <span>#2000000</span>
+                                            User ID <span>{user._id.slice(14).toUpperCase()}</span>
                                         </p>
                                     </div>
                                     <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
