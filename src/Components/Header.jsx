@@ -1,7 +1,7 @@
 import {IoIosMailUnread, IoIosMenu} from "react-icons/io";
 import logo from "../assets/PierLogo.svg";
 import {Drawer, Modal} from "antd";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 import {CiUser} from "react-icons/ci";
@@ -109,17 +109,19 @@ const Header = () => {
     };
 
     const handleMailSender = () => {
-        // toast.loading("generating OTP code")
+        const loadingId = toast.loading("generating OTP code");
         const url = "https://pier2pier.onrender.com/api/signupmail";
         const data = {email: signUpmail};
         axios
             .post(url, data)
             .then((response) => {
                 console.log(response);
+                toast.dismiss(loadingId);
                 toast.success(`${response.data.message}`);
                 setOpenVerify(true);
             })
             .catch((error) => {
+                toast.dismiss(loadingId);
                 console.log(error);
                 toast.error("Error sending code, please try again");
             });
@@ -149,7 +151,7 @@ const Header = () => {
             axios
                 .post(url, data)
                 .then((res) => {
-                    console.log(res.data);
+                    console.log(res);
                     localStorage.setItem(
                         "pierVerifyToken",
                         res?.data?.data?.token
@@ -157,8 +159,8 @@ const Header = () => {
                     localStorage.setItem("pierEmailSignUp", signUpmail);
                     toast.dismiss(loadingToast);
                     toast.success(res.data.message);
-                    const created = true;
-                    if (created) {
+                    // const created = true;
+                    if (res.data.data.isVerified === false) {
                         handleMailSender();
                     } else {
                         toast.error("Error Creating User");
@@ -203,6 +205,24 @@ const Header = () => {
                 });
         }
     };
+
+    const [exchangeRate, setExchangeRate] = useState(null);
+
+    useEffect(() => {
+        // Fetch the current exchange rate from an API (replace with a reliable API)
+        axios
+            .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+            .then((response) => {
+                const rate = response.data.bpi.USD.rate.replace(",", ""); // assuming USD rate
+                setExchangeRate(parseFloat(rate));
+            })
+            .catch((error) => {
+                console.error("Error fetching exchange rate:", error);
+            });
+    }, []); // Empty dependency array ensures useEffect runs only once on component mount
+
+    const stakeValueBTC = user.balance / exchangeRate;
+    const roundedTotalBTCStake = parseFloat(stakeValueBTC.toFixed(8));
 
     return (
         <>
@@ -249,7 +269,8 @@ const Header = () => {
                                     <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
                                         <p>Account Balance</p>
                                         <p className="w-full flex justify-between">
-                                            $200 <span>0.30000 BTC</span>
+                                            ${user.balance}{" "}
+                                            <span>{roundedTotalBTCStake} BTC</span>
                                         </p>
                                     </div>
                                     {/* <NavLink to={"/my-account"}> */}

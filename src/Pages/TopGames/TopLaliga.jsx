@@ -12,7 +12,7 @@ const TopLaliga = () => {
     // console.log(data[0].england.premier_league);
     const dispatch = useDispatch();
     const laliga = games[0].spain.laliga;
-    console.log(laliga);
+    // console.log(laliga);
     const [openFanPage, setOpenFanPage] = useState(false);
 
     const [selectedOddsIndices, setSelectedOddsIndices] = useState(() =>
