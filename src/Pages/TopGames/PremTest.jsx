@@ -1,43 +1,52 @@
 import {useState} from "react";
 import {Modal} from "antd";
+import games from "../../assets/Games.json";
 
 const PremTest = () => {
     const [openMkt, setOpenMkt] = useState(false);
+    const premGame = games[0].england.premier_league;
+
     return (
         <>
-            <div className="w-80 h-full bg-black flex flex-col justify-between rounded-lg p-4">
-                <p className="text-xs">Featured Match</p>
-                <div className="w-full h-max flex justify-between">
-                    <div className="w-max h-max flex flex-col gap-1">
-                        <p>Chelsea</p>
-                        <p>Burnley</p>
-                    </div>
-                    <div className="w-max flex flex-col items-end">
-                        <p className="text-xl">12:30</p>
-                        <p className="text-xs">02-02-2024</p>
-                    </div>
-                </div>
+            {premGame.map((item, index) => (
                 <div
-                    className="w-full h-max flex justify-between"
-                    onClick={() => setOpenMkt(true)}
+                    className="w-80 h-full bg-black flex flex-col justify-between rounded-lg p-4"
+                    key={index}
                 >
-                    <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
-                        <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
-                            1 <span>20%</span>
-                        </p>
+                    <p className="text-xs">Featured Match</p>
+                    <div className="w-full h-max flex justify-between">
+                        <div className="w-max h-max flex flex-col gap-1">
+                            <p>{item.home}</p>
+                            <p>{item?.away}</p>
+                        </div>
+                        <div className="w-max flex flex-col items-end">
+                            <p className="text-xl">{item?.time}</p>
+                            <p className="text-xs">{item?.date}</p>
+                        </div>
                     </div>
-                    <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
-                        <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
-                            x <span>15%</span>
-                        </p>
-                    </div>
-                    <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
-                        <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
-                            2 <span>60%</span>
-                        </p>
+                    <div
+                        className="w-full h-max flex justify-between"
+                        onClick={() => setOpenMkt(true)}
+                    >
+                        <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
+                            <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
+                                1 <span>{item?.home_win}</span>
+                            </p>
+                        </div>
+                        <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
+                            <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
+                                x <span>{item?.draw}</span>
+                            </p>
+                        </div>
+                        <div className="w-[30%] h-10 rounded-lg flex justify-between bg-gray-600 p-1">
+                            <p className="w-full h-full flex justify-between py-1 px-2 cursor-pointer">
+                                2 <span>{item?.away_win}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ))}
+
             <Modal
                 open={openMkt}
                 cancelButtonProps={{hidden: true}}

@@ -42,8 +42,8 @@ const Header = () => {
     const [loadingSignUp, setLoadingSignup] = useState(false);
     const [loadingVerify, setLoadingVerify] = useState(false);
     const [signUpmail, setSignUpMail] = useState("");
-    const [signUpFname, setSignUpFname] = useState("")
-    const [signUpUname, setSignUpUname] = useState("")
+    const [signUpFname, setSignUpFname] = useState("");
+    const [signUpUname, setSignUpUname] = useState("");
     const [signUpPwd, setSignupPwd] = useState("");
     const [FanPage, setFanPage] = useState("");
     const [openVerify, setOpenVerify] = useState(false);
@@ -127,16 +127,22 @@ const Header = () => {
 
     const handleSignUp = (e) => {
         e.preventDefault();
-        if (!signUpmail && !signUpPwd && !FanPage && !signUpFname && !signUpUname) {
+        if (
+            !signUpmail &&
+            !signUpPwd &&
+            !FanPage &&
+            !signUpFname &&
+            !signUpUname
+        ) {
             toast.err("Please enter all fields");
         } else {
-            setLoading(true);
+            setLoadingSignup(true);
             const data = {
                 email: signUpmail,
                 password: signUpPwd,
                 fanClub: FanPage,
                 fullName: signUpFname,
-                userName: signUpUname
+                userName: signUpUname,
             };
             const loadingToast = toast.loading("Loading In...");
             const url = "https://pire2pirebet-back-end.vercel.app/api/sign-up";
@@ -232,7 +238,12 @@ const Header = () => {
                                     <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
                                         <p>{user?.fullName}</p>
                                         <p className="w-full flex gap-2">
-                                            User ID <span>{user._id.slice(14).toUpperCase()}</span>
+                                            User ID{" "}
+                                            <span>
+                                                {user._id
+                                                    .slice(14)
+                                                    .toUpperCase()}
+                                            </span>
                                         </p>
                                     </div>
                                     <div className="w-full h-max flex flex-col gap-2 text-sm bg-slate-700 rounded-lg p-1">
@@ -761,7 +772,10 @@ const Header = () => {
                 cancelButtonProps={{hidden: true}}
                 okButtonProps={{hidden: true}}
                 closeIcon={true}
-                onCancel={() => setOpenSignUp(false)}
+                onCancel={() => {
+                    setOpenSignUp(false);
+                    setLoadingSignup(false);
+                }}
             >
                 <div className="w-full h-max text-white">
                     <div className="w-full h-20 flex items-center justify-center text-2xl">
@@ -830,7 +844,7 @@ const Header = () => {
                     </div>
                     <div className="w-full h-20 flex items-center justify-center">
                         <button
-                            className="px-4 py-2 rounded bg-green-900 text-white"
+                            className="px-4 py-2 rounded bg-green-900 text-white disabled:cursor-not-allowed disabled:bg-gray-600"
                             disabled={loadingSignUp}
                             onClick={handleSignUp}
                         >
@@ -849,7 +863,10 @@ const Header = () => {
                 cancelButtonProps={{hidden: true}}
                 okButtonProps={{hidden: true}}
                 closeIcon={true}
-                onCancel={() => setOpenLogin(false)}
+                onCancel={() => {
+                    setOpenLogin(false);
+                    setLoading(false);
+                }}
             >
                 <div className="w-full h-max text-white">
                     <div className="w-full h-20 flex items-center justify-center text-2xl">
@@ -863,6 +880,7 @@ const Header = () => {
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
                                 value={loginEmail}
                                 onChange={(e) => setLoginEmail(e.target.value)}
+                                placeholder="email@example.com"
                             />
                         </div>
                         <div>
@@ -872,12 +890,13 @@ const Header = () => {
                                 className="w-full h-10 rounded border border-gray-400 outline-none pl-3 text-black"
                                 value={loginPwd}
                                 onChange={(e) => setLoginPwd(e.target.value)}
+                                placeholder="enter your password"
                             />
                         </div>
                     </div>
                     <div className="w-full h-20 flex items-center justify-center">
                         <button
-                            className="px-4 py-2 rounded bg-green-900 text-white"
+                            className="px-4 py-2 rounded bg-green-900 text-white disabled:cursor-not-allowed disabled:bg-gray-500"
                             disabled={loading}
                             onClick={handleLogin}
                         >
