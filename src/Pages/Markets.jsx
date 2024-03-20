@@ -57,7 +57,7 @@ const Markets = () => {
                 .then((response) => {
                     toast.dismiss(loadingId);
                     console.log(response);
-                    toast.success(response.data?.data?.message);
+                    toast.success(response.data?.message);
                     setLoading(false);
                     setOfferType(false);
                     setOfferType("");

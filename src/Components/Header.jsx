@@ -15,7 +15,7 @@ import {userData, isLoggedInUser, logout, loginToken} from "../Global/Features";
 const Header = () => {
     const [openInbox, setOpenInbox] = useState(false);
     const [openAcceptModal, setOpenAcceptModal] = useState(false);
-    const testData = [1, 2, 3, 4, 5];
+    // const testData = [1, 2, 3, 4, 5];
     const [openLeft, setOpenLeft] = useState(false);
     const [europe, setEurope] = useState(false);
     const [england, setEngland] = useState(false);
@@ -31,6 +31,10 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const user = useSelector((state) => state.newPier2Pier.newPier2Pier.user);
+    const userToken = useSelector(
+        (state) => state.newPier2Pier.newPier2Pier.userToken
+    );
+
     const isLoggedIn = useSelector(
         (state) => state.newPier2Pier.newPier2Pier.isLoggedIn
     );
@@ -224,6 +228,32 @@ const Header = () => {
     const stakeValueBTC = user.balance / exchangeRate;
     const roundedTotalBTCStake = parseFloat(stakeValueBTC.toFixed(8));
 
+    const [offerData, setOfferData] = useState([]);
+
+    const handleGetAllOffers = () => {
+        const url = `https://pire2pirebet-back-end.vercel.app/api/alloffers`;
+        const headers = {
+            Authorization: `Bearer ${userToken}`,
+        };
+        axios
+            .get(url, {headers})
+            .then((response) => {
+                console.log(response);
+                setOfferData(response?.data?.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+    useEffect(() => {
+        if (userToken) {
+            handleGetAllOffers();
+        } else {
+            console.log("No User");
+        }
+    }, []);
+
     return (
         <>
             <div className="w-full h-16 bg-lime-950 flex items-center justify-between px-5">
@@ -270,7 +300,9 @@ const Header = () => {
                                         <p>Account Balance</p>
                                         <p className="w-full flex justify-between">
                                             ${user.balance}{" "}
-                                            <span>{roundedTotalBTCStake} BTC</span>
+                                            <span>
+                                                {roundedTotalBTCStake} BTC
+                                            </span>
                                         </p>
                                     </div>
                                     {/* <NavLink to={"/my-account"}> */}
@@ -375,27 +407,24 @@ const Header = () => {
                 style={{background: "#1d1f1d"}}
             >
                 <div className="w-full h-[90vh] overflow-y-auto flex flex-col gap-2 p-2">
-                    {testData.map((index) => (
+                    {offerData.map((item, index) => (
                         <div
                             className="w-full h-max bg-slate-700 rounded flex flex-col gap-1 p-1"
                             key={index}
                         >
-                            <p>Offer against game ID: #ABCD</p>
                             <p className="w-full h-max flex justify-between">
                                 Game <span>Chelsea vs Man Utd</span>
                             </p>
                             <p className="w-full h-max flex justify-between">
-                                Your Pick <span>Home -1</span>
+                                Pick <span>Home -1</span>
                             </p>
                             <p className="w-full h-max flex justify-between">
-                                Offer against <span>x3</span>
+                                Amount stake <span>${item.offerAmount}</span>
                             </p>
-                            <button
-                                className="w-max h-max px-4 py-2 rounded bg-green-600"
-                                onClick={() => setOpenAcceptModal(true)}
-                            >
-                                Accept
-                            </button>
+                            <p className="w-full h-max flex justify-between">
+                                Offer against: {item?.offerType}{" "}
+                                <span>Returns: $300</span>
+                            </p>
                         </div>
                     ))}
                 </div>
