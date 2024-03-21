@@ -1,9 +1,12 @@
 import {useState} from "react";
+import {useSelector} from "react-redux";
 
 const MyBetslips = () => {
     const [drop, setDrop] = useState(false);
-    const [drop2, setDrop2] = useState(false);
-    const [drop3, setDrop3] = useState(false);
+    const betSlips = useSelector(
+        (state) => state.newPier2Pier.newPier2Pier.user.betslips
+    );
+
     return (
         <>
             <div className="w-full h-max">
@@ -11,180 +14,44 @@ const MyBetslips = () => {
                     <p className="text-2xl">My Betslips</p>
                 </div>
                 <div className="w-full h-max  text-white flex flex-col gap-1 p-1">
-                    <div className="w-full h-max ">
-                        <div
-                            className="w-full h-20 bg-slate-700"
-                            onClick={() => setDrop(!drop)}
-                        >
-                            <p className="w-full flex justify-between">
-                                Game: #123456 <span>Single</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Total Stake: $200{" "}
-                                <span>Total Winning:5000</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Status: Pending <span>v</span>
-                            </p>
-                        </div>
-                        <div
-                            className={`w-full ${
-                                drop
-                                    ? "max-h-64 overflow-hidden transition-max-h duration-700 ease-in-out"
-                                    : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
-                            } flex flex-col gap-2 px-2`}
-                        >
-                            <div className="w-full h-20 bg-slate-700 mt-2">
+                    {betSlips.map((item, index) => (
+                        <div className="w-full h-max " key={index}>
+                            <div
+                                className="w-full h-20 bg-slate-700 p-1"
+                                onClick={() => setDrop(!drop)}
+                            >
                                 <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
+                                    Game: #{item?._id.slice(10).toUpperCase()}{" "}
+                                    <span>Single</span>
                                 </p>
                                 <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
+                                    Total Stake: ${item?.stake}
+                                </p>
+                                <p className="w-full flex justify-between">
+                                    Status: Pending <span>v</span>
                                 </p>
                             </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
+                            <div
+                                className={`w-full ${
+                                    drop
+                                        ? "max-h-64 overflow-hidden transition-max-h duration-700 ease-in-out"
+                                        : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
+                                } flex flex-col gap-2 px-2`}
+                            >
+                                <div className="w-full h-20 bg-slate-700 mt-2">
+                                    <p className="w-full flex justify-between">
+                                        02-10-2023 <span>20:00</span>
+                                    </p>
+                                    <p className="w-full flex justify-center gap-4">
+                                        {item?.game}
+                                    </p>
+                                    <p className="w-full flex justify-between">
+                                        Picks: {item?.pick} <span>Outcome: </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="w-full h-max ">
-                        <div
-                            className="w-full h-20 bg-slate-700"
-                            onClick={() => setDrop2(!drop2)}
-                        >
-                            <p className="w-full flex justify-between">
-                                Game: #123456 <span>Single</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Total Stake: $200{" "}
-                                <span>Total Winning:5000</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Status: Pending <span>v</span>
-                            </p>
-                        </div>
-                        <div
-                            className={`w-full ${
-                                drop2
-                                    ? "max-h-64 overflow-hidden transition-max-h duration-700 ease-in-out"
-                                    : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
-                            } flex flex-col gap-2 px-2`}
-                        >
-                            <div className="w-full h-20 bg-slate-700 mt-2">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="w-full h-max ">
-                        <div
-                            className="w-full h-20 bg-slate-700"
-                            onClick={() => setDrop3(!drop3)}
-                        >
-                            <p className="w-full flex justify-between">
-                                Game: #123456 <span>Single</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Total Stake: $200{" "}
-                                <span>Total Winning:5000</span>
-                            </p>
-                            <p className="w-full flex justify-between">
-                                Status: Pending <span>v</span>
-                            </p>
-                        </div>
-                        <div
-                            className={`w-full ${
-                                drop3
-                                    ? "max-h-64 overflow-hidden transition-max-h duration-700 ease-in-out"
-                                    : "max-h-0 overflow-hidden transition-max-h duration-700 ease-in-out "
-                            } flex flex-col gap-2 px-2`}
-                        >
-                            <div className="w-full h-20 bg-slate-700 mt-2">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                            <div className="w-full h-20 bg-slate-700">
-                                <p className="w-full flex justify-between">
-                                    02-10-2023 <span>20:00</span>
-                                </p>
-                                <p className="w-full flex justify-center gap-4">
-                                    Chealsea <span>VS Liverpool</span>
-                                </p>
-                                <p className="w-full flex justify-between">
-                                    Picks: -1x4 <span>Outcome: </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </>

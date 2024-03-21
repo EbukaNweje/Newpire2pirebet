@@ -413,17 +413,17 @@ const Header = () => {
                             key={index}
                         >
                             <p className="w-full h-max flex justify-between">
-                                Game <span>Chelsea vs Man Utd</span>
+                                Game <span>{item?.game}</span>
                             </p>
                             <p className="w-full h-max flex justify-between">
-                                Pick <span>Home -1</span>
+                                Pick <span>{item?.pick}</span>
                             </p>
                             <p className="w-full h-max flex justify-between">
                                 Amount stake <span>${item.offerAmount}</span>
                             </p>
                             <p className="w-full h-max flex justify-between">
                                 Offer against: {item?.offerType}{" "}
-                                <span>Returns: $300</span>
+                                <span>Returns: ${item?.offerReturn}</span>
                             </p>
                         </div>
                     ))}
