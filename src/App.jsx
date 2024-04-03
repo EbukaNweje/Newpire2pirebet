@@ -36,6 +36,7 @@ import MyTransactions from "./Pages/MyAccount/MyTransactions";
 import FrenchLeagueOne from "./Pages/Leagues/FrenchLeagueOne";
 import MyFanPage from "./Pages/FanPages/MyFanPage";
 import Markets from "./Pages/Markets";
+import Test from "./Test";
 
 
 const router = createBrowserRouter([
@@ -142,6 +143,7 @@ const router = createBrowserRouter([
     {path: "/signup", element: <SignUp />},
     {path: "/verify", element: <Verify />},
     {path: "/verify", element: <Verify />},
+    {path: "/test", element: <Test />},
     {
         path: "/my-account",
         element: <MyAccount />,
