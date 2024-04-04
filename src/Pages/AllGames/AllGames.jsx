@@ -8,7 +8,7 @@ import axios from "axios";
 const AllGames = () => {
     const prem = games[0].england.premier_league;
     const bundes = games[0].germany.bundesliga;
-    const laliga = games[0].spain.laliga;
+    const laliga = games[0].spain.copa_del_rey;
     const ligueone = games[0].france.ligue_one;
     const seriaA = games[0].italy.seria_a;
 
@@ -137,7 +137,7 @@ const AllGames = () => {
                                 <div className="w-full h-6 flex items-center text-[0.70rem] text-white font-light">
                                     <p>
                                         {item.time}{" "}
-                                        <span>England - Premier League</span>
+                                        <span>Laliga - Copa Del Rey</span>
                                     </p>
                                 </div>
                                 <div className="w-full h-max flex justify-between text-white">
@@ -169,7 +169,7 @@ const AllGames = () => {
                                 <div className="w-full h-6 flex items-center text-[0.70rem] text-white font-light">
                                     <p>
                                         {item.time}{" "}
-                                        <span>England - Premier League</span>
+                                        <span>Germany - Bundesliga</span>
                                     </p>
                                 </div>
                                 <div className="w-full h-max flex justify-between text-white">
@@ -201,7 +201,7 @@ const AllGames = () => {
                                 <div className="w-full h-6 flex items-center text-[0.70rem] text-white font-light">
                                     <p>
                                         {item.time}{" "}
-                                        <span>England - Premier League</span>
+                                        <span>Italy - Seria A</span>
                                     </p>
                                 </div>
                                 <div className="w-full h-max flex justify-between text-white">
@@ -233,7 +233,7 @@ const AllGames = () => {
                                 <div className="w-full h-6 flex items-center text-[0.70rem] text-white font-light">
                                     <p>
                                         {item.time}{" "}
-                                        <span>England - Premier League</span>
+                                        <span>France - Ligue 1</span>
                                     </p>
                                 </div>
                                 <div className="w-full h-max flex justify-between text-white">

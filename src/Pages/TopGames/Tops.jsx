@@ -4,7 +4,7 @@ import TopSeriaA from "./TopSeriaA";
 import TopBundes from "./TopBundes";
 import TopLigue1 from "./TopLigue1";
 import {useState} from "react";
-import PremTest from "./PremTest";
+// import PremTest from "./PremTest";
 
 const Tops = () => {
     const [topStatus, setTopStatus] = useState(0);
@@ -72,7 +72,7 @@ const Tops = () => {
                     <div className="w-full h-52 bg-sky-950 overflow-x-auto scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-slate-800 scrollbar-track-gray-300 scrollbar-none scrollbar-h-0">
                         <div className="w-max h-full flex gap-4 p-4">
                             {topStatus === 0 ? (
-                                <PremTest />
+                                <Prem />
                             ) : topStatus === 1 ? (
                                 <TopLaliga />
                             ) : topStatus === 2 ? (
