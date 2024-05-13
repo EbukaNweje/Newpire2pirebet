@@ -37,6 +37,7 @@ import FrenchLeagueOne from "./Pages/Leagues/FrenchLeagueOne";
 import MyFanPage from "./Pages/FanPages/MyFanPage";
 import Markets from "./Pages/Markets";
 import Test from "./Test";
+import Update_Games from "./Pages/Update_Games";
 
 
 const router = createBrowserRouter([
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
             {
                 path: "markets",
                 element: <Markets />,
+            },
+            {
+                path: "update-matches",
+                element: <Update_Games />,
             },
         ],
     },
