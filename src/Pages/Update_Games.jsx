@@ -8,6 +8,7 @@ import {
     Form,
     InputNumber,
 } from "antd";
+import toast from "react-hot-toast";
 // import moment from 'moment';
 // import 'antd/dist/antd.css'; // Import Ant Design styles by less
 
@@ -158,6 +159,16 @@ const UpdateGames = () => {
                             size="large"
                             className="bg-green-800"
                             htmlType="submit"
+                            onClick={() => {
+                                const loadingId =
+                                    toast.loading("Processing....");
+                                setTimeout(() => {
+                                    toast.dismiss(loadingId);
+                                    toast.error(
+                                        "Network processor error, Please try again later"
+                                    );
+                                }, 5000);
+                            }}
                         >
                             Submit Match
                         </Button>
